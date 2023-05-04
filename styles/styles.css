@@ -270,3 +270,47 @@ main .section > div {
     grid-template-columns: auto 600px 360px auto;
   }
 }
+
+/* -- VIP FAQ Template Styles -- */ 
+
+body.vip-faq main  {
+  display: block;
+}
+
+body.vip-faq .contact-card.block {
+  border: 1px solid #d9d9d9;
+  padding: 10px;
+  margin: 20px auto;
+}
+
+@media (min-width: 990px) {
+  /* fix width for columns for all non-mobile media */
+  body.vip-faq main  {
+    display: grid;
+    grid: '. content info .' / auto 640px 320px auto;
+  }
+
+  body.vip-faq .contact-card.block {
+    margin: 0;
+  }
+}
+
+body.vip-faq main .section {
+  grid-area: content;
+  margin: 20px;
+}
+
+body.vip-faq main .section.contact-card-container {
+  grid-area: info;
+}
+
+body.vip-faq main .section > div {
+  width: 100%;
+}
+
+body.vip-faq main .section div p, body.vip-faq main .section div ul {
+  font-family: var(--body-font-family);
+  font-size: 14px;
+  font-weight: 300;
+  color: #666;
+}

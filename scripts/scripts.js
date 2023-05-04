@@ -10,7 +10,9 @@ import {
   decorateTemplateAndTheme,
   waitForLCP,
   loadBlocks,
+  loadBlock,
   loadCSS,
+  getMetadata,
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -62,12 +64,30 @@ function buildHeroBlock(main) {
   }
 }
 
+function buildFAQPage(main) {
+  // create a section for the right info column
+  const div = document.createElement('div');
+  div.classList.add('section');
+  // add fragment block
+  const fragmentBlock = buildBlock('fragment', [['/area-vip/es/fragments/contact-card']]);
+  div.append(fragmentBlock);
+  // load fragment
+  loadBlock(fragmentBlock);
+  // add result section to main
+  main.append(div);
+
+  // add header
+}
+
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
 function buildAutoBlocks(main) {
   try {
+    if (getMetadata('template') === 'vip-faq') {
+      buildFAQPage(main);
+    }
     buildHeroBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
