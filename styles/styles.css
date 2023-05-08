@@ -273,44 +273,59 @@ main .section > div {
 
 /* -- VIP FAQ Template Styles -- */ 
 
-body.vip-faq main  {
-  display: block;
-}
-
+/* restyle contact card */
 body.vip-faq .contact-card.block {
   border: 1px solid #d9d9d9;
   padding: 10px;
   margin: 20px auto;
 }
 
-@media (min-width: 990px) {
-  /* fix width for columns for all non-mobile media */
-  body.vip-faq main  {
-    display: grid;
-    grid: '. content info .' / auto 640px 320px auto;
-  }
-
-  body.vip-faq .contact-card.block {
-    margin: 0;
-  }
-}
-
+/* move default content to the main content grid area */
 body.vip-faq main .section {
   grid-area: content;
+  margin: 10px;
+}
+
+/* header auto block to the top area */
+body.vip-faq main .section.faq-header-container {
+  grid-area: header;
+  margin: 0;
+}
+
+/* contact card fragment to the right side */
+body.vip-faq main .section.contact-card-container {
+  grid-area: info;
   margin: 20px;
 }
 
-body.vip-faq main .section.contact-card-container {
-  grid-area: info;
-}
-
+/* ajust inner widths */
 body.vip-faq main .section > div {
   width: 100%;
 }
 
+/* define font settings for all default content elements */
 body.vip-faq main .section div p, body.vip-faq main .section div ul {
-  font-family: var(--body-font-family);
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-weight: 300;
   color: #666;
+}
+
+@media (min-width: 990px) {
+  /* fix width for columns for all non-mobile media */
+  body.vip-faq main  {
+    display: grid;
+    grid: 'header header header header' 
+          '. content info .' / auto 640px 320px auto;
+  }
+
+  /* remove margin from info block */
+  body.vip-faq .contact-card.block {
+    margin: 0;
+  }
+
+  body.vip-faq main .section {
+    grid-area: content;
+    margin-top:  40px 0 0 0;
+  }
 }
