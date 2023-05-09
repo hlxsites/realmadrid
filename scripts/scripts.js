@@ -63,15 +63,19 @@ function buildHeroBlock(main) {
   }
 }
 
-function buildFAQPage(main) {
-  // add FAQ header
+function buildContentHeaderBlock(main) {
+  // add content header
   // create a section for the header
-  const faqSection = document.createElement('div');
-  const faqHeaderBlock = buildBlock('faq-header', '');
-  faqSection.append(faqHeaderBlock);
-  main.prepend(faqSection);
+  const headerSection = document.createElement('div');
+  const HeaderBlock = buildBlock('content-header', '');
+  headerSection.append(HeaderBlock);
+  main.prepend(headerSection);
+}
 
-  // create a section for the right info column
+function buildFAQPage(main) {
+  // add header on top
+  buildContentHeaderBlock(main);
+  // create a section for the info box
   const infoSection = document.createElement('div');
   const fragmentBlock = buildBlock('fragment', [['/area-vip/es/fragments/contact-card']]);
   infoSection.append(fragmentBlock);
@@ -86,7 +90,7 @@ function buildAutoBlocks(main) {
   try {
     // we use fragments in auto blocks which generates its own main and calls decorateMain()
     // on it. So we have to check that we are not ending in a recursive loop
-    if (getMetadata('template') === 'vip-faq' && main === document.querySelector('main')) {
+    if ((getMetadata('template') === 'vip-faq') && main === document.querySelector('main')) {
       buildFAQPage(main);
       return;
     }
