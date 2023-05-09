@@ -29,9 +29,12 @@ export default function decorate(block) {
     if (nextSubPath !== curPath) {
       const a = document.createElement('a');
       a.setAttribute('href', nextSubPath);
-      a.textContent = await getTitle(nextPathElem);
-      breadcrumb.append(a);
-      breadcrumb.append(' · ');
+      const parentTitle = await getTitle(nextSubPath);
+      if (parentTitle !== '') {
+        a.innerText = parentTitle;
+        breadcrumb.append(a);
+        breadcrumb.append(' · ');
+      }
     } else {
       const span = document.createElement('span');
       span.textContent = title;
