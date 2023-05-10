@@ -34,25 +34,29 @@
   --background-color: #fff;
   --overlay-background-color: #eee; /* ??? needed */
   --highlight-background-color: #ccc; /* ??? needed */
-  --text-color: #000;
+  --text-color: #43526E;
 
   /* RM: fonts */
   --body-font-family: "Open Sans", "open-sans-norma-400-fallback", arial, helvetica, sans-serif;
   --heading-font-family: "Oswald", "oswald-normal-400-fallback", sans-serif;
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
-  /* RM: body sizes */
-  --body-font-size-m: 19px;
-  --body-font-size-s: 17px; /* RM: Standard text */
+  /* RM: body sizes
+  --body-font-size-m: 19px; */
+  --body-font-size-s: 18px; /* RM: Standard text */
   --body-font-size-xs: 15px;
+
+  /* RM: body font weight */
+  --body-font-weight-default: 400;
 
   /* heading sizes */
   --heading-font-size-xxl: 55px; /* RM: h1 */
   --heading-font-size-xl: 40px;
   --heading-font-size-l: 32px;
-  --heading-font-size-m: 24px;
+  --heading-font-size-m: 28px;
   --heading-font-size-s: 20px; /* RM:h2, h3 */
   --heading-font-size-xs: 18px;
+
 
   /** heading color */
   --heading-color: #333;
@@ -135,6 +139,7 @@ h2 {
   color: var(--heading-color); /* #333 */
   text-transform: uppercase;
   margin-bottom: 21px;
+  margin-left: 10px;
   padding-bottom: 5px;
   width: var(--section-heading-width);
   border-right: 4px solid transparent;
@@ -144,7 +149,7 @@ h2 {
 /* RM: default content */
 p {
   font-size: var(--body-font-size-s);
-  font-weight: 300;
+  font-weight: var(--body-font-weight-default);
   line-height: 1.59;
   letter-spacing: -0.3px;
   color: var(--text-color);
@@ -225,12 +230,16 @@ main .section > div {
 .section.info-vip > .default-content-wrapper {
   width: auto;
   margin-top: 60px;
-  padding: 25px 100px 0 15px;
+  padding: 25px 20px 0;
   grid-column: 2/3;
   grid-row: 1/2;
 }
 
-.section.info-vip > .default-content-wrapper h2 {
+.section.section.info-vip > .default-content-wrapper h2 {
+  margin-left: 0;
+}
+
+.section.info-vip > .default-content-wrapper h2:first-of-type {
   font-size: 21px;
   font-weight: 300;
   color: var(--text-color);
@@ -256,19 +265,41 @@ main .section > div {
   }
 
   .section.info-vip > .default-content-wrapper h2 {
+    width: 68%;
+  }
+
+  .section.info-vip > .default-content-wrapper h2:first-of-type {
     width: auto;
     font-size: 29px;
     font-weight: 200;
     line-height: 1.03;
     margin-bottom: 25px;
+    margin-left: 0;
   }
-
 }
 
 @media (min-width: 990px) and (max-width: 1200px) {
   .section.info-vip {
     grid-template-columns: auto 600px 360px auto;
   }
+}
+
+/* TOUR STYLES */
+body.tour main .section {
+  padding: 0 20px;
+}
+
+body.tour .default-content-wrapper ul {
+  margin-left: 1.75rem;
+ }
+/* stylelint-disable-next-line no-descending-specificity */
+body.tour h2 {
+  font-size: var(--heading-font-size-m);
+  font-weight: 400;
+  margin-bottom: 15px;
+  line-height: 1.43;
+  border: none;
+  text-transform: none;
 }
 
 /* -- VIP FAQ Template Styles -- */ 
@@ -329,3 +360,4 @@ body.vip-faq main .section div p, body.vip-faq main .section div ul {
     margin-top:  40px 0 0 0;
   }
 }
+
