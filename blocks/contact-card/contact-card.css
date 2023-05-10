@@ -162,7 +162,7 @@
     .section.info-vip.homepage.contact-card-container>.contact-card-wrapper .contact-card .telephone::before {
       content: "\e90a";
       font-family: Real-Madrid-New-Icons, sans-serif;
-      color: #999;
+      color:  var(--icon-primary-color);
       font-size: 45px;
       border: 0;
       background: none;
