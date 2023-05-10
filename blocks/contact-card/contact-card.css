@@ -124,7 +124,7 @@
         width: 100%;
         max-height: none;
         display: grid;
-        grid-template-columns: auto 800px 400px auto;
+        grid-template-columns: auto 600px 360px auto;
     }
 
     .section.info-vip.homepage.contact-card-container>.contact-card-wrapper .contact-card {
@@ -141,13 +141,22 @@
       display: block;
     }
 
+    .section.info-vip.homepage.contact-card-container>.contact-card-wrapper .contact-card .title h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .section.info-vip.homepage.contact-card-container>.contact-card-wrapper .contact-card .title h3+p {
+      margin: 0;
+    }
+
     .section.info-vip.homepage.contact-card-container>.contact-card-wrapper .contact-card .telephone {
       display: flex;
       flex-basis: 50%;
       max-width: 50%;
       flex-direction: row;
       box-sizing: border-box;
-      margin-bottom: 45px;
+      line-height:normal;
     }
 
     .section.info-vip.homepage.contact-card-container>.contact-card-wrapper .contact-card .telephone::before {
@@ -165,5 +174,19 @@
       display: flex;
       align-items: flex-end;
       justify-content: center;
+      margin: 0;
+    }
+
+    .section.info-vip.homepage.contact-card-container>.contact-card-wrapper .contact-card .contact > div {
+      margin: 0;
+      padding: 0;
+      gap: 20px;
+    }
+}
+
+@media (min-width: 1200px) {
+      /* the home page version */
+      .section.info-vip.homepage.contact-card-container>.contact-card-wrapper {
+        grid-template-columns: auto 800px 400px auto;
     }
 }
