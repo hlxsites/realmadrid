@@ -1,0 +1,112 @@
+
+main .section .content-header-wrapper {    
+  background-color: #EEE;
+  background-image: radial-gradient(480px 480px at 58% center, #fff 0%,#ebebeb 100%);
+  width:100%;
+}
+
+.content-header {
+  width: 100%;
+  margin: 0 auto; 
+  padding-top: 25px;
+  padding-bottom: 23px;
+  position: relative;
+  overflow: hidden;
+  font-size: x-small;
+}
+
+.content-header::after {
+  background: url("/area-vip/images/rm-logo-headers.png") no-repeat left top;
+  width: 98px;
+  height: 136px;
+  background-size: 98px 136px;
+  right: 3px;
+  top: 6px;
+  display: block;
+  content: "";
+  position: absolute;
+}
+
+.content-header h1 {
+  display: block;
+  font-size: 2.4em;
+  margin: 0 26px;
+  z-index: 1;
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.content-header .breadcrumb {
+  display: none;
+  margin-top: 9px;
+  margin-left: 9px;
+  line-height: normal;
+  height: auto;
+  padding-left: 0;
+  padding-right: 0;
+  font-size: x-small;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.content-header .breadcrumb .breadcrumb-items {
+  font-size: 1.2em;
+}
+
+.content-header .breadcrumb .breadcrumb-items a {
+  text-decoration: none;
+  padding-right: 1px;
+  color: #999;
+}
+
+.content-header .breadcrumb .breadcrumb-items span {
+  color: black;
+}
+
+@media (min-width:786px) and (max-width: 990px) {
+  .content-header {
+    padding-top: 39px;
+    padding-bottom: 35px;
+  }
+
+  .content-header h1 {
+    font-size: 3em;
+  }
+
+  .content-header::after {
+    width: 118px;
+    height: 167px;
+    right: 15px;
+    top: 11px;
+    background-size: 118px 167px;
+  }
+}
+
+@media (min-width: 990px) {
+  /* show the breadcrumb */
+  .content-header .breadcrumb {
+    display: block;
+  }
+
+  .content-header {
+    width: 960px;
+    min-height: 87px;
+    padding: 35px 0 26px;
+  }
+
+  .content-header::after {
+    width: 248px;
+    height: 351px;
+    display: block;
+    content: "";
+    position: absolute;
+    top: 19px;
+    right: -22px;
+    background-size: auto;
+  }
+
+  .content-header h1 {
+    font-size: 5.3em;
+    margin: 0 7px;
+  }
+}

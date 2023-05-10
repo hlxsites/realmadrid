@@ -19,7 +19,33 @@
   display: block;
 }
 
-@media (min-width: 900px) {
+/* COLUMNS VIP LOCATION TYPE */
+.columns.vip-location {
+  padding: 25px 10px 0;
+ }
+
+.columns.vip-location ul {
+  list-style-type: none;
+  display: flex;
+  font-size: 15px;
+  padding: 30px 0;
+  margin: 0 10px;
+}
+
+.columns.vip-location ul li {
+  flex-basis: 50%;
+  padding-right: 5px;
+}
+
+.columns.vip-location > div > div:nth-of-type(2) li strong {
+  display: block;
+  text-transform: uppercase;
+  font-size: 17px;
+  letter-spacing: -0.3px;
+  margin-bottom: 5px;
+}
+
+@media (min-width: 990px) {
   .columns > div {
     align-items: center;
     flex-direction: unset;
@@ -29,5 +55,41 @@
   .columns > div > div {
     flex: 1;
     order: unset;
+  }
+
+  /* for columns part of the info-vip section grid */
+  .section.info-vip .columns-wrapper {
+    width: unset;
+    grid-column: 2/3;
+    grid-row: 2/3;
+    padding: 25px 100px 0 15px;
+  }
+
+  /* COLUMNS VIP LOCATION TYPE */
+  .columns.vip-location > div {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .columns.vip-location > div > div.columns-img-col {
+    flex-grow: 2;
+  }
+
+  .columns.vip-location > div > div:nth-of-type(2) {
+    flex-grow: 0;
+    flex-basis: 150px;
+  }
+
+  .columns.vip-location > div > div:nth-of-type(2) ul {
+    padding: 0;
+    flex-wrap: wrap;
+    margin-left: 20px;
+    margin-right: 0;
+  }
+
+  .columns.vip-location > div > div:nth-of-type(2) ul li {
+    flex-basis: 100%;
+    margin-bottom: 20px;
   }
 }

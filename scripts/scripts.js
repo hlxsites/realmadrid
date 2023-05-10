@@ -11,6 +11,7 @@ import {
   waitForLCP,
   loadBlocks,
   loadCSS,
+  getMetadata,
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -62,12 +63,37 @@ function buildHeroBlock(main) {
   }
 }
 
+function buildContentHeaderBlock(main) {
+  // add content header
+  // create a section for the header
+  const headerSection = document.createElement('div');
+  const HeaderBlock = buildBlock('content-header', '');
+  headerSection.append(HeaderBlock);
+  main.prepend(headerSection);
+}
+
+function buildFAQPage(main) {
+  // add header on top
+  buildContentHeaderBlock(main);
+  // create a section for the info box
+  const infoSection = document.createElement('div');
+  const fragmentBlock = buildBlock('fragment', [['/area-vip/es/fragments/contact-card']]);
+  infoSection.append(fragmentBlock);
+  main.append(infoSection);
+}
+
 /**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
 function buildAutoBlocks(main) {
   try {
+    // we use fragments in auto blocks which generates its own main and calls decorateMain()
+    // on it. So we have to check that we are not ending in a recursive loop
+    if ((getMetadata('template') === 'vip-faq') && main === document.querySelector('main')) {
+      buildFAQPage(main);
+      return;
+    }
     buildHeroBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console

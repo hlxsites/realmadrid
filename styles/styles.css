@@ -139,6 +139,7 @@ h2 {
   color: var(--heading-color); /* #333 */
   text-transform: uppercase;
   margin-bottom: 21px;
+  margin-left: 10px;
   padding-bottom: 5px;
   width: var(--section-heading-width);
   border-right: 4px solid transparent;
@@ -229,12 +230,16 @@ main .section > div {
 .section.info-vip > .default-content-wrapper {
   width: auto;
   margin-top: 60px;
-  padding: 25px 100px 0 15px;
+  padding: 25px 20px 0;
   grid-column: 2/3;
   grid-row: 1/2;
 }
 
-.section.info-vip > .default-content-wrapper h2 {
+.section.section.info-vip > .default-content-wrapper h2 {
+  margin-left: 0;
+}
+
+.section.info-vip > .default-content-wrapper h2:first-of-type {
   font-size: 21px;
   font-weight: 300;
   color: var(--text-color);
@@ -260,13 +265,17 @@ main .section > div {
   }
 
   .section.info-vip > .default-content-wrapper h2 {
+    width: 68%;
+  }
+
+  .section.info-vip > .default-content-wrapper h2:first-of-type {
     width: auto;
     font-size: 29px;
     font-weight: 200;
     line-height: 1.03;
     margin-bottom: 25px;
+    margin-left: 0;
   }
-
 }
 
 @media (min-width: 990px) and (max-width: 1200px) {
@@ -275,18 +284,16 @@ main .section > div {
   }
 }
 
-
 /* TOUR STYLES */
-
-.tour main .section {
+body.tour main .section {
   padding: 0 20px;
 }
 
- .tour .default-content-wrapper ul {
+body.tour .default-content-wrapper ul {
   margin-left: 1.75rem;
  }
-
-.tour h2 {
+/* stylelint-disable-next-line no-descending-specificity */
+body.tour h2 {
   font-size: var(--heading-font-size-m);
   font-weight: 400;
   margin-bottom: 15px;
@@ -294,3 +301,63 @@ main .section > div {
   border: none;
   text-transform: none;
 }
+
+/* -- VIP FAQ Template Styles -- */ 
+
+/* restyle contact card */
+body.vip-faq .contact-card.block {
+  border: 1px solid #d9d9d9;
+  padding: 10px;
+  margin: 20px auto;
+}
+
+/* move default content to the main content grid area */
+body.vip-faq main .section {
+  grid-area: content;
+  margin: 10px;
+}
+
+/* header auto block to the top area */
+body.vip-faq main .section.content-header-container {
+  grid-area: header;
+  margin: 0;
+}
+
+/* contact card fragment to the right side */
+body.vip-faq main .section.contact-card-container {
+  grid-area: info;
+  margin: 20px;
+}
+
+/* ajust inner widths */
+body.vip-faq main .section > div {
+  width: 100%;
+}
+
+/* define font settings for all default content elements */
+body.vip-faq main .section div p, body.vip-faq main .section div ul {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: #666;
+}
+
+@media (min-width: 990px) {
+  /* fix width for columns for all non-mobile media */
+  body.vip-faq main  {
+    display: grid;
+    grid: 'header header header header' 
+          '. content info .' / auto 640px 320px auto;
+  }
+
+  /* remove margin from info block */
+  body.vip-faq .contact-card.block {
+    margin: 0;
+  }
+
+  body.vip-faq main .section {
+    grid-area: content;
+    margin-top:  40px 0 0 0;
+  }
+}
+
