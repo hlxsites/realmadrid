@@ -1,15 +1,11 @@
 /* eslint-disable no-underscore-dangle */
 import { readBlockConfig, fetchPlaceholders } from '../../scripts/lib-franklin.js';
-
+import { getLocale } from '../../scripts/scripts.js';
 // todo : make it configurable
 const API = {
   football: '/realmadridmastersite/matchesVIPFootball',
   basketball: '/realmadridmastersite/matchesVIPBasket',
 };
-
-function getLocale() { // todo: read from the URL ?
-  return 'es-ES';
-}
 
 const timeformat = new Intl.DateTimeFormat(getLocale(), { minute: '2-digit', hour12: false, hour: '2-digit' });
 const dateformat = new Intl.DateTimeFormat(getLocale(), { weekday: 'short', month: 'short', day: '2-digit' });
@@ -123,6 +119,12 @@ function renderCalendarIcons(match, placeholders) {
     const attrStr = Object.entries(attributes).map(([k, v]) => `${k}="${v}"`).join(' ');
     return `<a class="calendar-icon icon-${icon}" href="${href}" ${attrStr}>${text}</a>`;
   }).join('');
+}
+
+// eslint-disable-next-line no-unused-vars
+function getOptimizedImage(src) { // todo : use that if optimized image is required. See issue#65
+  const match = src.match(/(.+)\.([^.]+)$/);
+  return `${match[1]}.app.${match[2]}`;
 }
 
 const renderMatch = (placeholders) => (match) => {
