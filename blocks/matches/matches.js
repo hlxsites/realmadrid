@@ -14,8 +14,6 @@ function getLocale() { // todo: read from the URL ?
 const timeformat = new Intl.DateTimeFormat(getLocale(), { minute: '2-digit', hour12: false, hour: '2-digit' });
 const dateformat = new Intl.DateTimeFormat(getLocale(), { weekday: 'short', month: 'short', day: '2-digit' });
 const monthFormat = new Intl.DateTimeFormat(getLocale(), { month: 'short' });
-const currentMonth = new Date().getMonth();
-const monthNames = new Array(12).fill(1).map((x, i) => monthFormat.format(new Date(`2023-${i + 1}-1`)));
 
 function createDiv(classNames, ...children) {
   const element = document.createElement('div');
@@ -31,10 +29,6 @@ function createDiv(classNames, ...children) {
 
 function toGoogleTime(date) {
   return date.toISOString().replace(/[-:]/g, '').replace(/.\d*Z/, 'Z');
-}
-
-function createUrl(url, params) {
-  return new URL();
 }
 
 function getEventInfo(match, placeholders) {
@@ -192,7 +186,16 @@ const renderMatch = (placeholders) => (match) => {
 };
 
 function getCurrentSeason() {
-  return '22/23';
+  const now = new Date();
+  const month = now.getMonth();
+  const year = now.getFullYear();
+  let start = year;
+  let end = year + 1;
+  if (month < 6) {
+    start -= 1;
+    end -= 1;
+  }
+  return `${start.toString().slice(-2)}/${end.toString().slice(-2)}`;
 }
 
 function getMonthOptions(months) {
@@ -265,20 +268,14 @@ export default async function decorate(block) {
   const url = new URL(`${matchesGqApi}${API[sport.toLowerCase()]}`); // todo: add params fromDate endDate
   const response = await fetch(url);
   const data = await response.json();
-  const _items = data.data.matchList.items.concat(data.data.matchList.items);
-  const items = _items.map(renderMatch(placeholders));
+  const items = data.data.matchList.items.map(renderMatch(placeholders));
   const itemsWrapper = createDiv(
     'match-list',
     ...items,
     createDiv('empty-match', noMatches),
   );
 
-  // const months = new Set(items.map((x) => x.dataset.month));
-  const months = [
-    monthNames[currentMonth - 1],
-    monthNames[currentMonth],
-    monthNames[currentMonth + 1]]; // ideally this would be created
-    // from the api response
+  const months = [...new Set(items.map((x) => x.dataset.month))];
   block.innerHTML = '';
   const filters = createFilters(block, placeholders, months);
   block.append(filters, itemsWrapper);
