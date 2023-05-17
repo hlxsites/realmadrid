@@ -134,8 +134,27 @@ function renderCalendarIcons(match, placeholders) {
 const renderMatch = (placeholders) => (match) => {
   const ctaLabel = placeholders.buyVipTickets;
   const fromText = placeholders.from;
-  const time = new Date(match.dateTime);
   const { matchday, addToCalendar, pricesAndSales } = placeholders;
+  const {
+    competition: {
+      name: cmpName,
+      logo: cmpLogo,
+    },
+    week,
+    venue: {
+      name: venueName,
+    },
+    dateTime,
+    homeTeam: {
+      logo: homeTeamLogo,
+      name: homeTeamName,
+    },
+    awayTeam: {
+      logo: awayTeamLogo,
+      name: awayTeamName,
+    },
+  } = match;
+  const time = new Date(dateTime);
   const month = monthFormat.format(time);
   const content = `
   <input type="checkbox" />
@@ -147,20 +166,20 @@ const renderMatch = (placeholders) => (match) => {
     </div>
   </div>
   <div class="match-content">
-    <img class="logo competition" src="${match.competition.logo._publishUrl}" alt="match logo">
+      ${cmpLogo ? `<img class="logo competition" src="${cmpLogo ? cmpLogo._publishUrl : ''}" alt="${cmpName}">` : ''}
       <div class="competition-info">
-        <span>${matchday} ${match.week || 0}</span>
-        <span>${match.venue.name}</span>
+        <span>${matchday} ${week || 0}</span>
+        <span>${venueName}</span>
       </div>
       <div class="datetime">
         <span class="time">${timeformat.format(time)}</span>
         <span class="date">${dateformat.format(time)}</span>
       </div>
-      <img class="logo team home" src="${match.homeTeam.logo._publishUrl}" alt="${match.homeTeam.name}">
-      <img class="logo team away" src="${match.awayTeam.logo._publishUrl}" alt="${match.awayTeam.name}">
+      <img class="logo team home" src="${homeTeamLogo._publishUrl}" alt="${homeTeamName}">
+      <img class="logo team away" src="${awayTeamLogo._publishUrl}" alt="${awayTeamName}">
       <div class="teams">
-        <span>${match.homeTeam.name}</span>
-        <span>${match.awayTeam.name}</span>
+        <span>${homeTeamName}</span>
+        <span>${awayTeamName}</span>
       </div>
       <div class="price">${fromText} 1.400€</div>
       <a class="button cta" href="#">${ctaLabel}</a>
