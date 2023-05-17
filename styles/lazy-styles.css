@@ -18,3 +18,28 @@
   font-weight:normal;
   font-style:normal;
 }
+
+/* header fonts */
+@font-face{
+  font-family:RMNeue;
+  font-display:swap;
+  src: url("/fonts/RMNeue-Regular.woff2") format("woff");
+  font-weight:normal;
+  font-style:normal;
+}
+
+@font-face{
+  font-family:RMNeue;
+  font-display:swap;
+  src: url("/fonts/RMNeue-SemiBold.woff2") format("woff");
+  font-weight:600;
+  font-style:normal;
+}
+
+@font-face{
+  font-family:RMNeue;
+  font-display:swap;
+  src: url("/fonts/RMNeue-Bold.woff2") format("woff");
+  font-weight:bold;
+  font-style:normal;
+}

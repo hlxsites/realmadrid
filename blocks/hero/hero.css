@@ -123,7 +123,7 @@ main .hero video[data-screen="desktop"] {
 @media screen and (min-width:990px) {
   main .hero {
     height: auto;
-    margin-top: 126px;
+    margin-top: 64px;
     min-height: calc(100vh - 150px);
   }
 

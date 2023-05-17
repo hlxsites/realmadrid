@@ -1,0 +1,25 @@
+.top-menu {
+    display: flex;
+    flex: 0 0;
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: space-around;
+    white-space: nowrap;
+    font-family: var(--header-font-family-bold);
+    font-size: 16px;
+    color: #43526e;
+    font-weight: 600;
+}
+
+a.top-menu-item {
+    border: 0;
+    color: #43526E;
+    text-decoration: none;
+    padding: 10px 12px;
+    font-family: var(--header-font-family);
+    font-size: 16px;
+}
+
+a.top-menu-item:hover {
+    color: blue;
+}

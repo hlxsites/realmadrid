@@ -26,6 +26,20 @@
   src: local("Arial");
 }
 
+/* fallback font for RMNeue (normal - 400) for header */
+@font-face {
+  font-family: "rmneue-normal-400-fallback";
+  size-adjust: 98.669%;
+  src: local("Arial");
+}
+
+/* fallback font for RMNeue (normal - 700) for header */
+@font-face {
+  font-family: "rmneue-normal-700-fallback";
+  size-adjust: 100.491%;
+  src: local("Arial");
+}
+
 /* mobile settings */
  :root {
   /* RM: colors */
@@ -41,6 +55,8 @@
   --body-font-family: "Open Sans", "open-sans-norma-400-fallback", arial, helvetica, sans-serif;
   --heading-font-family: "Oswald", "oswald-normal-400-fallback", sans-serif;
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
+  --header-font-family: "RMNeue","rmneue-normal-400-fallback";
+  --header-font-family-bold: "RMNeue","rmneue-normal-700-fallback";
 
   /* RM: body sizes
   --body-font-size-m: 19px; */
@@ -112,6 +128,7 @@ body {
   color: var(--text-color);
   background-color: var(--background-color);
   display: none;
+  padding-top: var(--nav-height);
 }
 
 /* required by franklin */
