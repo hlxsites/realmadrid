@@ -104,12 +104,19 @@ main > .matches-container h2 {
   display: none;
   overflow: hidden;
   margin: 0 4px;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.matches .match-content {
+  display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 20px;
-  box-sizing: border-box;
+  height: 100%;
+  flex: 1 1 auto;
 }
 
 .matches .match.appear, .matches .empty-match.appear {
@@ -239,14 +246,21 @@ main > .matches-container h2 {
     display: none;
     background-color: var(--background-color);
     font-size: 0.75rem;
-    justify-content: space-between;
     min-height: 70px;
     margin: 0 0 10px;
     border-radius: 10px;
-    padding: 5px 60px 5px 20px;
+    padding: 5px 0 5px 20px;
     align-items: center;
     width: 100%;
     flex-wrap: nowrap;
+  }
+
+  .matches .match-content {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    position: relative;
+    justify-content: space-between;
   }
 
   .matches .match:first-of-type {
@@ -254,7 +268,7 @@ main > .matches-container h2 {
   }
 
   .match.appear, .empty-match.appear {
-    display: flex;
+    display: block;
   }
 
   .match img {
@@ -292,7 +306,8 @@ main > .matches-container h2 {
   .match .teams {
     display:flex;
     flex-direction: column;
-    align-items: center;
+    align-items: end;
+    font-size: 0.75rem;
     flex: 0 0 205px;
     color: #808080;
     padding-right: 15px;
@@ -409,5 +424,107 @@ main > .matches-container h2 {
     overflow: unset;
   }
 
+  .match .calendar-info {
+    font-size: 0.938rem;
+    line-height: 1;
+    letter-spacing: -0.3px;
+  }
 
+  .match .calendar-info a {
+    font-size: 0.938rem;
+    line-height: 1;
+    letter-spacing: -0.3px;
+    padding: 0 20px;
+  }
+
+  .match .calendar-info > span {
+    font-weight: 100;
+  }
+
+  .match .calendar-info > .calendar-icons {
+    display: flex;
+  }
+
+  .match .calendar-info .calendar-icon {
+    text-decoration: none;
+    font-size: 0;
+    color: #016ace;
+  }
+
+  .match .calendar-info .calendar-icon::before {
+    width: 20px;
+    height: 20px;
+    font-family: Real-Madrid-New-Icons, sans-serif;
+    font-size: 30px;
+    display: block;
+    margin-top: -10px;
+  }
+
+  .match .calendar-info .icon-google::before {
+    content: "\e900";
+  }
+
+  .match .calendar-info .icon-ical::before {
+    content: "\e901";
+  }
+
+  .match .calendar-info .icon-outlook::before {
+    content: "\e902";
+  }
+
+
+  .match > input {
+    order: 2;
+    appearance: none;
+    z-index: 10;
+  }
+
+  .match > input::before {
+    line-height: 1.4;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    content: "\e907";
+    font-family: Real-Madrid-New-Icons, sans-serif;
+    color: #8bbbe8;
+    font-size: 33px;
+    vertical-align: middle;
+  }
+
+  .match > input:checked::before {
+    content: "\e903";
+  }
+
+  .match > input + div {
+    width: 0;
+    overflow: hidden;
+    display: flex;
+    transition: width 0.5s;
+    position: absolute;
+    right: 0;
+    z-index: 8;
+    box-sizing: border-box;
+    height: 100%;
+    align-items: center;
+    background-color: #fff;
+  }
+
+  .match > input:checked + div {
+    width: 1200px;
+    padding-left: 153px;
+  }
+
+  .match > input:checked ~ .match-content > .logo.home,
+  .match > input:checked ~ .match-content > .logo.away {
+    display: block;
+    position: absolute;
+    background-color: #fff;
+    z-index: 12;
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  .match > input:checked ~ .match-content > .logo.away {
+    left: 65px;
+  }
 }

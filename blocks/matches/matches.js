@@ -17,34 +17,158 @@ const monthFormat = new Intl.DateTimeFormat(getLocale(), { month: 'short' });
 const currentMonth = new Date().getMonth();
 const monthNames = new Array(12).fill(1).map((x, i) => monthFormat.format(new Date(`2023-${i + 1}-1`)));
 
+function createDiv(classNames, ...children) {
+  const element = document.createElement('div');
+  element.classList.add(...classNames.split(' '));
+  if (children.length && typeof children[0] === 'string') {
+    // eslint-disable-next-line prefer-destructuring
+    element.innerHTML = children[0];
+  } else if (children.length) {
+    element.append(...children);
+  }
+  return element;
+}
+
+function toGoogleTime(date) {
+  return date.toISOString().replace(/[-:]/g, '').replace(/.\d*Z/, 'Z');
+}
+
+function createUrl(url, params) {
+  return new URL();
+}
+
+function getEventInfo(match, placeholders) {
+  const {
+    description: {
+      plaintext,
+    },
+    dateTime,
+    venue: {
+      name,
+    },
+  } = match;
+  const { matchday } = placeholders;
+  const startTime = new Date(dateTime);
+  const endTime = new Date(startTime.getTime() + 2 * 60 * 60 * 1000);
+  const dateStart = toGoogleTime(startTime);
+  const dateEnd = toGoogleTime(endTime);
+  return {
+    dateStart,
+    dateEnd,
+    description: plaintext,
+    location: name,
+    details: `${matchday} ${match.week || 0}`,
+  };
+}
+
+function createCalendarEvent(match, placeholders) {
+  const {
+    dateStart,
+    dateEnd,
+    description,
+    location,
+    details,
+  } = getEventInfo(match, placeholders);
+  let calendarEvent = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'BEGIN:VEVENT',
+    `DTSTART:${dateStart}`,
+    `DTEND:${dateEnd}`,
+    `LOCATION:${location}`,
+    `DESCRIPTION:${details}`,
+    `SUMMARY:${description}`,
+    'END:VEVENT',
+    'END:VCALENDAR',
+  ];
+  const SEPARATOR = '\n';
+  calendarEvent = calendarEvent.join(SEPARATOR);
+  return `data:text/plain;charset=utf-8,${calendarEvent}`;
+}
+
+const calendars = {
+  ical(match, placeholders) {
+    return [
+      'iCal Calendar',
+      createCalendarEvent(match, placeholders),
+      { download: 'calendar.ics' },
+    ];
+  },
+  outlook(match, placeholders) {
+    return [
+      'Outlook Calendar',
+      createCalendarEvent(match, placeholders),
+      { download: 'calendar.ics' },
+    ];
+  },
+  google(match, placeholders) {
+    const {
+      dateStart,
+      dateEnd,
+      description,
+      location,
+      details,
+    } = getEventInfo(match, placeholders);
+    const url = new URL('https://calendar.google.com/calendar/u/0/r/eventedit');
+    Object.entries({
+      text: description,
+      dates: `${dateStart}/${dateEnd}`,
+      details,
+      location,
+    }).forEach((k) => url.searchParams.set(...k));
+    return ['Google Calendar',
+      url.toString(),
+      { target: 'blank' },
+    ];
+  },
+};
+
+function renderCalendarIcons(match, placeholders) {
+  return Object.entries(calendars).map(([icon, fn]) => {
+    const [text, href, attributes = {}] = fn(match, placeholders);
+    const attrStr = Object.entries(attributes).map(([k, v]) => `${k}="${v}"`).join(' ');
+    return `<a class="calendar-icon icon-${icon}" href="${href}" ${attrStr}>${text}</a>`;
+  }).join('');
+}
+
 const renderMatch = (placeholders) => (match) => {
-  const div = document.createElement('div');
   const ctaLabel = placeholders.buyVipTickets;
   const fromText = placeholders.from;
   const time = new Date(match.dateTime);
-  const { matchday } = placeholders;
-  div.classList.add('match');
+  const { matchday, addToCalendar, pricesAndSales } = placeholders;
   const month = monthFormat.format(time);
-  div.setAttribute('data-month', month);
-  div.innerHTML = `<img class="logo competition" src="${match.competition.logo._publishUrl}" alt="match logo">
-    <div class="competition-info">
-      <span>${matchday} ${match.week || 0}</span>
-      <span>${match.venue.name}</span>
+  const content = `
+  <input type="checkbox" />
+  <div class="calendar-info">
+    <a href="#">${pricesAndSales}</a>
+    <span>${addToCalendar}</span>
+    <div class="calendar-icons">
+      ${renderCalendarIcons(match, placeholders)}
     </div>
-    <div class="datetime">
-      <span class="time">${timeformat.format(time)}</span>
-      <span class="date">${dateformat.format(time)}</span>
+  </div>
+  <div class="match-content">
+    <img class="logo competition" src="${match.competition.logo._publishUrl}" alt="match logo">
+      <div class="competition-info">
+        <span>${matchday} ${match.week || 0}</span>
+        <span>${match.venue.name}</span>
+      </div>
+      <div class="datetime">
+        <span class="time">${timeformat.format(time)}</span>
+        <span class="date">${dateformat.format(time)}</span>
+      </div>
+      <img class="logo team home" src="${match.homeTeam.logo._publishUrl}" alt="${match.homeTeam.name}">
+      <img class="logo team away" src="${match.awayTeam.logo._publishUrl}" alt="${match.awayTeam.name}">
+      <div class="teams">
+        <span>${match.homeTeam.name}</span>
+        <span>${match.awayTeam.name}</span>
+      </div>
+      <div class="price">${fromText} 1.400€</div>
+      <a class="button cta" href="#">${ctaLabel}</a>
     </div>
-    <img class="logo team home" src="${match.homeTeam.logo._publishUrl}" alt="${match.homeTeam.name}">
-    <img class="logo team away" src="${match.awayTeam.logo._publishUrl}" alt="${match.awayTeam.name}">
-    <div class="teams">
-      <span>${match.homeTeam.name}</span>
-      <span>${match.awayTeam.name}</span>
-    </div>
-    <div class="price">${fromText} 1.400€</div>
-    <a class="button cta" href="#">${ctaLabel}</a>
   </div>
   `;
+  const div = createDiv('match', content);
+  div.setAttribute('data-month', month);
   return div;
 };
 
@@ -112,18 +236,6 @@ function createFilters(block, placeholders, months) {
     }
   });
   return ol;
-}
-
-function createDiv(classNames, ...children) {
-  const element = document.createElement('div');
-  element.classList.add(...classNames.split(' '));
-  if (children.length && typeof children[0] === 'string') {
-    // eslint-disable-next-line prefer-destructuring
-    element.innerHTML = children[0];
-  } else if (children.length) {
-    element.append(...children);
-  }
-  return element;
 }
 
 export default async function decorate(block) {
