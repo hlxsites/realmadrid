@@ -1,0 +1,72 @@
+.badge a {
+  position: relative;
+  display: block;
+  text-align: center;
+}
+
+.badge .background-image img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 100%;
+}
+
+.badge .background-image picture {
+  position: relative;
+  overflow: hidden;
+  height: 405px;
+  display: block;
+}
+
+.badge .background-image p {
+  margin: 0;
+  text-decoration: none;
+}
+
+.badge .upper-box {
+  padding: 26px 14px;
+  font-weight: 400;
+  font-family: var(--heading-font-family);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+.badge .upper-box p {
+  color: #0abdff;
+  font-size: 16px;
+  margin: 0 0 3px;
+}
+
+.badge .upper-box div > p:nth-child(1) {
+  color: #fff;
+  font-size: 19px;
+}
+
+.badge .lower-box {
+  padding: 26px 14px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.badge .lower-box a {
+  font-size: 12px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  box-shadow: 0 0.188rem 0.5rem 0 rgb(0 0 0 / 40%);
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.badge .lower-box p {
+  font-size: 11px;
+  color: white;
+  font-weight: 400;
+  margin: 0;
+}
+

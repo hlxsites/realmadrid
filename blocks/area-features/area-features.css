@@ -94,7 +94,7 @@ main .area-features-wrapper {
   margin: 0;
 }
 
-.area-features .cards .modal .modal-content > .header {
+.area-features .cards .modal .modal-content > .modal-header {
   display: flex;
   align-items: center;
   gap: 18px;
@@ -102,7 +102,7 @@ main .area-features-wrapper {
   background: var(--background-color);
 }
 
-.area-features .header h3 {
+.area-features .modal-header h3 {
   font-size: 19px;
   margin: 0 0 6px;
   color: var(--text-color);

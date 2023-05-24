@@ -76,7 +76,7 @@ function createModal(icon, heading, content, hasIFrame) {
   <div class="modal-content-wrapper ${hasIFrame ? 'iframe-content' : ''}">
   <div class="modal-content">
   <button class="close" tabindex="0"></button>
-  <div class="header">
+  <div class="modal-header">
     ${[icon, heading].map((h) => h.outerHTML).join('')}
   </div>
     ${content.map((c) => c.outerHTML).join('')}

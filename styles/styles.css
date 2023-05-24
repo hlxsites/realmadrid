@@ -58,8 +58,8 @@
   --header-font-family: "RMNeue","rmneue-normal-400-fallback";
   --header-font-family-bold: "RMNeue","rmneue-normal-700-fallback";
 
-  /* RM: body sizes
-  --body-font-size-m: 19px; */
+  /* RM: body sizes */
+  --body-font-size-m: 20px;
   --body-font-size-s: 18px; /* RM: Standard text */
   --body-font-size-xs: 15px;
 
@@ -90,6 +90,7 @@
   --icon-primary-color: #999;
   --icon-secondary-color: #fff;
   --icon-terciary-color: #777;
+
 }
 
 /* Desktop */
@@ -314,6 +315,10 @@ main .section > div {
 }
 
 /* TOUR STYLES */
+body.tour main p {
+  font-size: var(--body-font-size-s);
+}
+
 body.tour main .section {
   padding: 0 20px;
 }
@@ -328,10 +333,50 @@ body.tour main .section-organize-visit {
   padding: 54px 20px 49px;
 }
 
+body.tour main .section .default-content-wrapper p {
+  color: #444;
+  margin: 0 0 28px;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+body.tour main h2 {
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  margin-bottom: 3px;
+}
+
 /* stylelint-disable-next-line no-descending-specificity */
 body.tour main .section-organize-visit h2{
   margin-bottom: 49px;
   margin-top: 0;
+  color: var(--text-color);
+}
+
+body.tour main .merge-blocks-desktop {
+  padding-bottom: 50px;
+}
+
+@media (min-width: 990px) {
+  body.tour .merge-blocks-desktop {
+    display: flex;
+    width: var(--wrapper-width);
+    margin: 0 auto;
+    column-gap: 26px;
+    padding-bottom: 96px;
+  }
+
+  body.tour .merge-blocks-desktop .columns-wrapper{
+    flex-basis: 75%;
+  }
+
+  body.tour .merge-blocks-desktop .columns > div{
+    align-items: flex-start;
+    column-gap: 26px;
+  }
+
+  body.tour .merge-blocks-desktop .badge-wrapper{
+    flex-basis: 25%;
+  }
 }
 
 /* -- VIP FAQ Template Styles -- */
@@ -367,6 +412,7 @@ body.vip-faq main .section > div {
 }
 
 /* define font settings for all default content elements */
+/* stylelint-disable-next-line no-descending-specificity */
 body.vip-faq main .section div p, body.vip-faq main .section div ul {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;

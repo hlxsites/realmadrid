@@ -1,0 +1,19 @@
+version: 1
+
+sitemaps:
+  area-vip:
+    origin: https://main--realmadrid--hlxsites.hlx.live
+    lastmod: YYYY-MM-DD
+    languages:
+      es:
+        source: /area-vip/query-index.json
+        destination: /sitemap.xml
+        hreflang: es
+      en:
+        source: /en/vip-area/query-index.json
+        destination: /sitemap.xml
+        hreflang: en
+      de:
+        source: /de/vip-zone/query-index.json
+        destination: /sitemap.xml
+        hreflang: de

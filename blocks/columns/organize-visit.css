@@ -61,7 +61,6 @@
   padding: 7px 11px;
   flex-basis: max-content;
   line-height: 22px;
-  font-size: 16px;
   font-weight: 400;
   color: #222;
 }
@@ -70,7 +69,6 @@
   line-height: 22px;
   margin: 0;
   color: #222;
-  font-size: 16px;
 }
 
 @media (min-width: 900px) {
@@ -90,12 +88,7 @@
 
   .columns.organize-visit .visit-box .text-wrapper {
     border-left: 2px solid #cdcdcd;
-    font-size: 14px;
     padding: 5px 14px;
     flex-basis: 100%;
-  }
-
-  .columns.organize-visit .visit-box .text-wrapper p {
-    font-size: 14px;
   }
 }
