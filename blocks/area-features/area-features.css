@@ -140,6 +140,11 @@ main .area-features-wrapper {
   margin: 0;
 }
 
+[dir="rtl"] .area-features .cards .modal-content > .close {
+  left: 18px;
+  right: unset;
+}
+
 .area-features .cards .modal-content > .close::after {
   font-size: 17px;
   font-weight: 700;
