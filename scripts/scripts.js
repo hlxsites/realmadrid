@@ -239,14 +239,14 @@ const LANG_LOCALE = {
 export function getLocale() {
   return LANG_LOCALE[getLanguage()];
 }
-// eslint-disable-next-line no-undef
-const placeholders = await fetchPlaceholders();
-const { aemGqEndpoint } = placeholders;
-const locale = getLocale();
-
-const DATA_URL = `${aemGqEndpoint}/realmadridmastersite/structurePage%3Balang=${locale}`;
 let navigationConfig;
 export async function fetchNavigationConfig() {
+  // eslint-disable-next-line no-undef
+  const placeholders = await fetchPlaceholders();
+  const { aemGqEndpoint } = placeholders;
+  const locale = getLocale();
+
+  const DATA_URL = `${aemGqEndpoint}/realmadridmastersite/structurePage%3Balang=${locale}`;
   if (navigationConfig) {
     return navigationConfig;
   }
