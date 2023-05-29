@@ -265,6 +265,16 @@ export function getVipAreaIndexPath(url) {
   return `${url.origin}${VIP_AREA_LANGUAGE_HOME_PATH[language]}${VIP_AREA_INDEX}`;
 }
 
+export async function fetchLanguagePlaceholders() {
+  const currentLanguage = getLanguage();
+  let prefix = `/${currentLanguage}`;
+  if (language === 'es') {
+    prefix = 'default';
+  }
+  const placeholders = await fetchPlaceholders(prefix);
+  return placeholders;
+}
+
 /**
  * Adds a child div that wraps the blocks below 'merge-blocks-desktop' section and moves the class
  * to the new child.
