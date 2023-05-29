@@ -271,8 +271,8 @@ export async function fetchLanguagePlaceholders() {
   if (language === 'es') {
     prefix = 'default';
   }
-  const placeholders = await fetchPlaceholders(prefix);
-  return placeholders;
+  const languagePlaceholders = await fetchPlaceholders(prefix);
+  return languagePlaceholders;
 }
 
 /**
