@@ -130,7 +130,7 @@ main .area-features-wrapper {
   width: 17px;
   height: 30px;
   top: 18px;
-  right: 18px;
+  inset-inline-end: 18px;
   position: absolute;
   cursor: pointer;
   background-color: unset;
@@ -138,11 +138,6 @@ main .area-features-wrapper {
   box-shadow: unset;
   padding: 0;
   margin: 0;
-}
-
-[dir="rtl"] .area-features .cards .modal-content > .close {
-  left: 18px;
-  right: unset;
 }
 
 .area-features .cards .modal-content > .close::after {
