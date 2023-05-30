@@ -15,7 +15,7 @@ export default async function decorate(block) {
     lastScroll = window.scrollY;
   });
 
-  addPopupMenuButton(block, data);
+  await addPopupMenuButton(block, data);
 
   const sponsorIcons = data.data.header.items[0].sponsors.map((sponsor) => (
     // eslint-disable-next-line no-underscore-dangle

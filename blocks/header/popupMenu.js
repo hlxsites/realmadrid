@@ -10,7 +10,7 @@ export function createTopMenuMobile(data) {
   return menu;
 }
 
-export default function createPopupMenu(data) {
+export default async function createPopupMenu(data) {
   const popupArea = document.createElement('div');
   popupArea.classList.add('popup-menu-area');
 
@@ -115,14 +115,14 @@ export default function createPopupMenu(data) {
   sponsors.innerHTML = `
     ${sponsorIcons}
     <a href="https://app-rm-spa-web-stg.azurewebsites.net/sobre-el-real-madrid/el-club/patrocinadores">
-         Ver todos los patrocinadores 
+         Ver todos los patrocinadores
     </a>
   `;
 
   const footer = document.createElement('div');
   popup.appendChild(footer);
   footer.classList.add('language-popup-menu-area');
-  createLanguageSelectorButton(footer, data.data.header.items[0].languages);
+  await createLanguageSelectorButton(footer, data.data.header.items[0].languages);
 
   return popupArea;
 }

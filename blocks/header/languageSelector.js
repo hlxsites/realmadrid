@@ -2,7 +2,36 @@ import { getLocale } from '../../scripts/scripts.js';
 
 const SITE_URL = 'https://app-rm-spa-web-stg.azurewebsites.net';
 
-function createLanguageDropdown(languages, languageButtonContent, currentLanguage) {
+async function fetchSiteMap() {
+  try {
+    const response = await fetch('/sitemap.xml');
+    const siteMapText = await response.text();
+    const parser = new DOMParser();
+    const siteMap = parser.parseFromString(siteMapText, 'text/xml');
+    return siteMap;
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.log('unable to get the sitemap', e);
+  }
+  return null;
+}
+
+async function getLocalizedUrls() {
+  const siteMap = await fetchSiteMap();
+  if (siteMap) {
+    const currentUrl = window.location.pathname;
+    const locations = [...siteMap.querySelectorAll('loc')];
+    const location = locations.find((x) => new URL(x.textContent).pathname === currentUrl);
+    if (location && location.parentElement) {
+      const links = [...location.parentElement.querySelectorAll('link')];
+      return Object.fromEntries(links.map((link) => [link.hreflang, new URL(link.href).pathname]));
+    }
+  }
+  return {};
+}
+
+async function createLanguageDropdown(languages, languageButtonContent, currentLanguage) {
+  const urls = await getLocalizedUrls();
   const languageDropdown = document.createElement('ul');
   languageDropdown.classList.add('language-selector-dropdown');
 
@@ -22,8 +51,11 @@ function createLanguageDropdown(languages, languageButtonContent, currentLanguag
     if (languages[i].code === currentLanguage) {
       languageItem.classList.add('current');
     }
+    const langUrl = urls[languages[i].name.toLowerCase()]
+      ? urls[languages[i].name.toLowerCase()]
+      : `${SITE_URL}/${languages[i].code}`;
     languageItem.innerHTML = `
-      <a href="${SITE_URL}/${languages[i].code}">${languages[i].label}</a>
+      <a href="${langUrl}">${languages[i].label}</a>
       <svg focusable="false" width="22" height="22" aria-hidden="true">
         <use xlink:href="/blocks/header/cibeles-sprite.svg#check"></use>
       </svg>
@@ -34,7 +66,7 @@ function createLanguageDropdown(languages, languageButtonContent, currentLanguag
   return languageDropdown;
 }
 
-export default function createLanguageSelectorButton(parent, languages) {
+export default async function createLanguageSelectorButton(parent, languages) {
   const languageSelector = document.createElement('div');
   languageSelector.classList.add('language-selector');
   parent.appendChild(languageSelector);
@@ -57,7 +89,7 @@ export default function createLanguageSelectorButton(parent, languages) {
   languageSelectorButton.appendChild(document.createRange()
     .createContextualFragment(languageButtonContent));
 
-  const languageDropdown = createLanguageDropdown(
+  const languageDropdown = await createLanguageDropdown(
     languages,
     languageButtonContent,
     currentLanguage,

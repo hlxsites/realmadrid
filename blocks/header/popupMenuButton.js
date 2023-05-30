@@ -1,6 +1,6 @@
 import createPopupMenu from './popupMenu.js';
 
-export default function addPopupMenuButton(block, data) {
+export default async function addPopupMenuButton(block, data) {
   let state = false;
   const icon = () => {
     const src = `/blocks/header/cibeles-sprite.svg#${state ? 'times' : 'menu'}`;
@@ -10,7 +10,7 @@ export default function addPopupMenuButton(block, data) {
         </svg>
     `;
   };
-  const popup = createPopupMenu(data);
+  const popup = await createPopupMenu(data);
   block.appendChild(popup);
   const menu = document.createElement('div');
   menu.setAttribute('style', 'background-color: #fff; border-radius: 5px; padding: 0px 9px; display: flex; flex-direction: column; justify-content: center; align-items: center');
