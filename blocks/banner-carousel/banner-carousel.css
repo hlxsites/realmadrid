@@ -160,6 +160,10 @@ body main .section.banner-carousel-container {
   border-bottom-left-radius: 3px;
 }
 
+.banner-carousel .control-container .prev.hide, .banner-carousel .control-container .next.hide {
+  display: none;
+}
+
 @media screen and (orientation: landscape) and  (max-height: 430px) {
   .banner-carousel .carousel-slide h2 {
     top: 90px;

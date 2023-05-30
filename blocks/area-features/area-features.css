@@ -46,6 +46,7 @@ body.modal-visible {
 
 main .area-features-wrapper {
   padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .area-features .cards  ul {

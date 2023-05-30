@@ -76,6 +76,7 @@
   --body-font-weight-default: 400;
 
   /* heading sizes */
+  --heading-font-size-xxxl: 60px;
   --heading-font-size-xxl: 55px; /* RM: h1 */
   --heading-font-size-xl: 40px;
   --heading-font-size-l: 32px;
@@ -410,6 +411,101 @@ body.tour main .merge-blocks-desktop {
 
   body.tour .merge-blocks-desktop .badge-wrapper{
     flex-basis: 25%;
+  }
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+body.tour.tour-detail main .main-section h2 {
+  font-size: var(--heading-font-size-l);
+  margin-bottom: 0;
+}
+
+body.tour.tour-detail main .main-section h3 {
+  font-size: var(--heading-font-size-s);
+  font-weight: 300;
+  margin-bottom: 13px;
+  letter-spacing: -0.21px;
+  line-height: 29px;
+  color: var(--heading-color);
+}
+
+body.tour.tour-detail main .main-section blockquote {
+  padding: 0 28px;
+  margin: 0;
+}
+
+body.tour.tour-detail main .main-section blockquote p {
+  font-size: var(--body-font-size-m);
+  font-weight: 300;
+  font-style: italic;
+  text-align: center;
+  color: #64809b;
+}
+
+body.tour.tour-detail main .main-section p:first-of-type {
+  margin-bottom: 20px;
+}
+
+body.tour.tour-detail main .main-section ul {
+  margin-left: 0;
+  padding-left: 24px;
+}
+
+body.tour.tour-detail main .main-section ul li::marker {
+  color: #d8dfe6;
+}
+
+body.tour.tour-detail main .main-section ul li {
+  color: #444;
+}
+
+body.tour.tour-detail main .main-section blockquote::before,
+body.tour.tour-detail main .main-section blockquote::after {
+  content: '';
+  width: 50px;
+  height: 1px;
+  margin: 38px auto 22px;
+  display: block;
+  background-color: #64809b;
+}
+
+@media (min-width: 990px) {
+  body.tour.tour-detail main .main-section {
+    width: 930px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  body.tour.tour-detail main .main-section .default-content-wrapper {
+    width: auto;
+  }
+
+  body.tour.tour-detail main .main-section h2 {
+    font-size: var(--heading-font-size-xxxl);
+    line-height: 65px;
+  }
+
+  body.tour.tour-detail main .main-section h3 {
+    margin-top: 70px;
+    font-size: var(--heading-font-size-m);
+  }
+
+  body.tour.tour-detail main .main-section p,
+  body.tour.tour-detail main .main-section h3 {
+    padding-left: 290px;
+  }
+
+  body.tour.tour-detail main .main-section blockquote {
+    padding-left: 431px;
+    padding-right: 135px;
+  }
+
+  body.tour.tour-detail main .main-section blockquote p {
+    padding: 0;
+  }
+
+  body.tour.tour-detail main .main-section ul {
+    padding-left: 314px;
   }
 }
 

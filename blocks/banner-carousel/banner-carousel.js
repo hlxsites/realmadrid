@@ -107,32 +107,35 @@ function initializeScroll(block, slidesNo) {
   const slides = block.querySelector(':scope > div:first-child');
   const nextBTN = document.getElementById('next');
   const pagination = block.querySelector('.image-pagination');
-  // automatic slide every 5secs
-  const timer = new SliderTimer(() => {
-    slideNext(block, slides, slidesNo, pagination);
-  }, 5000);
+  if (slidesNo > 1) {
+    // automatic slide every 5secs
+    const timer = new SliderTimer(() => {
+      slideNext(block, slides, slidesNo, pagination);
+    }, 5000);
+    nextBTN.classList.remove('hide');
+    prevBTN.classList.remove('hide');
+    // next/prev buttons initialization
+    nextBTN.addEventListener('click', () => {
+      slideNext(block, slides, slidesNo, pagination);
+      timer.reset(5000);
+    });
 
-  // next/prev buttons initialization
-  nextBTN.addEventListener('click', () => {
-    slideNext(block, slides, slidesNo, pagination);
-    timer.reset(5000);
-  });
+    prevBTN.addEventListener('click', () => {
+      slidePrev(block, slides, slidesNo, pagination);
+      timer.reset();
+    });
 
-  prevBTN.addEventListener('click', () => {
-    slidePrev(block, slides, slidesNo, pagination);
-    timer.reset();
-  });
-
-  // swipe events initialization
-  bindSwipeToElement(block);
-  block.addEventListener('swipe-RTL', () => {
-    slideNext(block, slides, slidesNo, pagination);
-    timer.reset();
-  });
-  block.addEventListener('swipe-LTR', () => {
-    slidePrev(block, slides, slidesNo, pagination);
-    timer.reset();
-  });
+    // swipe events initialization
+    bindSwipeToElement(block);
+    block.addEventListener('swipe-RTL', () => {
+      slideNext(block, slides, slidesNo, pagination);
+      timer.reset();
+    });
+    block.addEventListener('swipe-LTR', () => {
+      slidePrev(block, slides, slidesNo, pagination);
+      timer.reset();
+    });
+  }
   // window resize
   window.addEventListener('resize', () => {
     marginRecalc(block, slides, pagination);
@@ -155,11 +158,11 @@ export default function decorate(block) {
   });
   const indicatorsHTML = `
 <div class="control-container">
-    <div class="prev" id="prev">&#10094</div>
+    <div class="prev hide" id="prev">&#10094</div>
     <div class="image-pagination">
       ${entries}
     </div>
-    <div class="next" id="next">&#10095</div>
+    <div class="next hide" id="next">&#10095</div>
   </div>`;
   block.innerHTML += indicatorsHTML;
   initializeScroll(block, cols.length);

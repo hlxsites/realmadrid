@@ -13,8 +13,6 @@ export default async function decorate(block) {
   }
 
   const footerConfig = data.data.footer.items[0];
-  console.dir(footerConfig);
-
   const mainSection = document.createElement('div');
   mainSection.classList.add('footer-main-section');
   block.append(mainSection);
