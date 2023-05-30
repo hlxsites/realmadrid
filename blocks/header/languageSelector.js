@@ -51,8 +51,9 @@ async function createLanguageDropdown(languages, languageButtonContent, currentL
     if (languages[i].code === currentLanguage) {
       languageItem.classList.add('current');
     }
-    const langUrl = urls[languages[i].name.toLowerCase()]
-      ? urls[languages[i].name.toLowerCase()]
+    const langName = languages[i].name.toLowerCase();
+    const langUrl = urls[langName]
+      ? urls[langName]
       : `${SITE_URL}/${languages[i].code}`;
     languageItem.innerHTML = `
       <a href="${langUrl}">${languages[i].label}</a>
