@@ -1,6 +1,33 @@
 import { getLocale } from '../../scripts/scripts.js';
 
-const SITE_URL = 'https://app-rm-spa-web-stg.azurewebsites.net';
+const TOUR_SECTION = 'tour-bernabeu';
+const VIP_SECTION = 'area-vip';
+
+const SITES_PREFIX = ''; // wiil be /sites/ later on
+
+const defaultVipHome = {
+  en: '/en/vip-area',
+  es: '/area-vip',
+  fr: '/fr/zone-vip',
+  de: '/de/vip-zone',
+  pt: '/pt/area-vip',
+  ja: '/ja/vip-area',
+  ar: '/ar/vip-area',
+  hi: '/hi/vip-area',
+};
+
+const VIP_SECTION_NAMES = Object.values(defaultVipHome);
+
+const defaultTourHome = {
+  en: '/en/tour-bernabeu',
+  es: '/tour-bernabeu',
+  fr: '/fr/tour-bernabeu',
+  de: '/de/tour-bernabeu',
+  pt: '/pt/tour-bernabeu',
+  ja: '/ja/tour-bernabeu',
+  ar: '/ar/tour-bernabeu',
+  hi: '/hi/tour-bernabeu',
+};
 
 async function fetchSiteMap() {
   try {
@@ -32,6 +59,15 @@ async function getLocalizedUrls() {
 
 async function createLanguageDropdown(languages, languageButtonContent, currentLanguage) {
   const urls = await getLocalizedUrls();
+  let sectionName;
+  const currentUrl = window.location.pathname;
+  if (VIP_SECTION_NAMES.find((x) => currentUrl.startsWith(x))) {
+    sectionName = VIP_SECTION;
+  } else if (currentUrl.indexOf(TOUR_SECTION) > -1) {
+    sectionName = TOUR_SECTION;
+  } else {
+    sectionName = VIP_SECTION; // todo: choose proper default
+  }
   const languageDropdown = document.createElement('ul');
   languageDropdown.classList.add('language-selector-dropdown');
 
@@ -51,10 +87,16 @@ async function createLanguageDropdown(languages, languageButtonContent, currentL
     if (languages[i].code === currentLanguage) {
       languageItem.classList.add('current');
     }
-    const langName = languages[i].name.toLowerCase();
+    const langName = languages[i].code.split('-')[0].toLowerCase();
+    let defaultUrl = '#';
+    if (sectionName === TOUR_SECTION) {
+      defaultUrl = defaultTourHome[langName];
+    } else if (sectionName === VIP_SECTION) {
+      defaultUrl = defaultVipHome[langName];
+    }
     const langUrl = urls[langName]
       ? urls[langName]
-      : `${SITE_URL}/${languages[i].code}`;
+      : `${SITES_PREFIX}${defaultUrl}`;
     languageItem.innerHTML = `
       <a href="${langUrl}">${languages[i].label}</a>
       <svg focusable="false" width="22" height="22" aria-hidden="true">
