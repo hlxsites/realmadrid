@@ -128,11 +128,13 @@ main .area-features-wrapper {
 }
 
 .area-features .cards .modal-content > .close {
-  width: 17px;
+  width: 100%;
   height: 30px;
-  top: 18px;
-  inset-inline-end: 18px;
   position: absolute;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  top: 18px;
   cursor: pointer;
   background-color: unset;
   border: unset;
@@ -149,6 +151,7 @@ main .area-features-wrapper {
   display: block;
   font-family: Real-Madrid-Icons, sans-serif;
   text-indent: 0;
+  margin-inline-end:18px;
 }
 
 .area-features .cards .modal iframe {
