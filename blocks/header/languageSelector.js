@@ -3,7 +3,7 @@ import { getLocale } from '../../scripts/scripts.js';
 const TOUR_SECTION = 'tour-bernabeu';
 const VIP_SECTION = 'area-vip';
 
-const SITES_PREFIX = ''; // wiil be /sites/ later on
+const SITES_PREFIX = '/sites';
 
 const defaultVipHome = {
   en: '/en/vip-area',
@@ -19,15 +19,17 @@ const defaultVipHome = {
 const VIP_SECTION_NAMES = Object.values(defaultVipHome);
 
 const defaultTourHome = {
-  en: '/en/tour-bernabeu',
-  es: '/tour-bernabeu',
-  fr: '/fr/tour-bernabeu',
-  de: '/de/tour-bernabeu',
-  pt: '/pt/tour-bernabeu',
-  ja: '/ja/tour-bernabeu',
-  ar: '/ar/tour-bernabeu',
-  hi: '/hi/tour-bernabeu',
+  en: `/en/${TOUR_SECTION}`,
+  es: `/${TOUR_SECTION}`,
+  fr: `/fr/${TOUR_SECTION}`,
+  de: `/de/${TOUR_SECTION}`,
+  pt: `/pt${TOUR_SECTION}`,
+  ja: `/ja${TOUR_SECTION}`,
+  ar: `/ar${TOUR_SECTION}`,
+  hi: `/hi${TOUR_SECTION}`,
 };
+
+const TOUR_SECTION_NAMES = Object.values(defaultTourHome);
 
 async function fetchSiteMap() {
   try {
@@ -61,9 +63,9 @@ async function createLanguageDropdown(languages, languageButtonContent, currentL
   const urls = await getLocalizedUrls();
   let sectionName;
   const currentUrl = window.location.pathname;
-  if (VIP_SECTION_NAMES.find((x) => currentUrl.startsWith(x))) {
+  if (VIP_SECTION_NAMES.find((x) => currentUrl.indexOf(x) > -1)) {
     sectionName = VIP_SECTION;
-  } else if (currentUrl.indexOf(TOUR_SECTION) > -1) {
+  } else if (TOUR_SECTION_NAMES.find((x) => currentUrl.indexOf(x) > -1)) {
     sectionName = TOUR_SECTION;
   } else {
     sectionName = VIP_SECTION; // todo: choose proper default
