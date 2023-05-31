@@ -25,7 +25,7 @@ export default async function decorate(block) {
     mainNavigation.append(mainNavigationItem);
     mainNavigationItem.appendChild(document.createRange().createContextualFragment(`
       <a href="${item.url}">${item.title}</a>
-      <svg focusable="false" width="24" height="24"><use xlink:href="/blocks/header/cibeles-sprite.svg#chevron-right"></use></svg>
+      <svg focusable="false" width="24" height="24"><use xlink:href="${window.hlx.codeBasePath}/blocks/header/cibeles-sprite.svg#chevron-right"></use></svg>
     `));
     const childNavigation = document.createElement('ul');
     mainNavigationItem.append(childNavigation);
@@ -100,7 +100,7 @@ export default async function decorate(block) {
     socialLinks.append(li);
     li.appendChild(document.createRange().createContextualFragment(`
       <a href="${item.url}">
-        <svg focusable="false" width="24" height="24"><title>${item.title}</title><use xlink:href="/blocks/header/cibeles-sprite.svg#${item.title.toLowerCase()}"></use></svg>
+        <svg focusable="false" width="24" height="24"><title>${item.title}</title><use xlink:href="${window.hlx.codeBasePath}/blocks/header/cibeles-sprite.svg#${item.title.toLowerCase()}"></use></svg>
       </a>
     `));
   });
@@ -113,7 +113,7 @@ export default async function decorate(block) {
   logo.classList.add('footer-logo');
   bottomSection.append(logo);
   logo.innerHTML = `
-    <svg focusable="false" width="56" height="56"><use xlink:href="/blocks/header/cibeles-sprite.svg#logo-rm"></use></svg>
+    <svg focusable="false" width="56" height="56"><use xlink:href="${window.hlx.codeBasePath}/blocks/header/cibeles-sprite.svg#logo-rm"></use></svg>
   `;
 
   const bottomBar = document.createElement('ul');

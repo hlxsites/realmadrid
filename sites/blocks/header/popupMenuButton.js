@@ -3,7 +3,7 @@ import createPopupMenu from './popupMenu.js';
 export default async function addPopupMenuButton(block, data) {
   let state = false;
   const icon = () => {
-    const src = `/blocks/header/cibeles-sprite.svg#${state ? 'times' : 'menu'}`;
+    const src = `${window.hlx.codeBasePath}/blocks/header/cibeles-sprite.svg#${state ? 'times' : 'menu'}`;
     return `
         <svg focusable="false" width="24" height="24" aria-hidden="true">
             <use xlink:href="${src}"></use>

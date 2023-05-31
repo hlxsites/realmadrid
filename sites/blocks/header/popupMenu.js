@@ -22,13 +22,13 @@ export default async function createPopupMenu(data) {
 
   const hasChildrenIcon = `
     <svg focusable="false" width="18" height="18" aria-hidden="true" class="main-popup-menu-has-children right">
-      <use xlink:href="/blocks/header/cibeles-sprite.svg#chevron-right"></use>
+      <use xlink:href="${window.hlx.codeBasePath}/blocks/header/cibeles-sprite.svg#chevron-right"></use>
     </svg>
     <svg focusable="false" width="18" height="18" aria-hidden="true" class="main-popup-menu-has-children up ">
-      <use xlink:href="/blocks/header/cibeles-sprite.svg#chevron-up"></use>
+      <use xlink:href="${window.hlx.codeBasePath}/blocks/header/cibeles-sprite.svg#chevron-up"></use>
     </svg>
     <svg focusable="false" width="18" height="18" aria-hidden="true" class="main-popup-menu-has-children down">
-      <use xlink:href="/blocks/header/cibeles-sprite.svg#chevron-down"></use>
+      <use xlink:href="${window.hlx.codeBasePath}/blocks/header/cibeles-sprite.svg#chevron-down"></use>
     </svg>
     `;
 

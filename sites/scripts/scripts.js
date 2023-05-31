@@ -74,15 +74,17 @@ function buildContentHeaderBlock(main) {
   main.prepend(headerSection);
 }
 
+const DOCROOT = '/sites';
+
 const VIP_AREA_LANGUAGE_HOME_PATH = {
-  es: '/area-vip',
-  en: '/en/vip-area',
-  fr: '/fr/zone-vip',
-  de: '/de/vip-zone',
-  pt: '/pt/area-vip',
-  ja: '/ja/vip-area',
-  ar: '/ar/vip-area',
-  hi: '/hi/vip-area',
+  es: `${DOCROOT}/area-vip`,
+  en: `${DOCROOT}/en/vip-area`,
+  fr: `${DOCROOT}/fr/zone-vip`,
+  de: `${DOCROOT}/de/vip-zone`,
+  pt: `${DOCROOT}/pt/area-vip`,
+  ja: `${DOCROOT}/ja/vip-area`,
+  ar: `${DOCROOT}/ar/vip-area`,
+  hi: `${DOCROOT}/hi/vip-area`,
 };
 
 let language;
@@ -94,7 +96,7 @@ export function getLanguage() {
   if (segs && segs.length > 0) {
     // eslint-disable-next-line no-restricted-syntax
     for (const [value] of Object.entries(VIP_AREA_LANGUAGE_HOME_PATH)) {
-      if (value === segs[1]) {
+      if (value === segs[2]) {
         language = value;
         break;
       }
@@ -225,15 +227,14 @@ function loadDelayed() {
 
 const VIP_AREA_INDEX = '/query-index.json';
 const LANG_LOCALE = {
+  es: 'es-ES',
   en: 'en-US',
   de: 'de-DE',
   fr: 'fr-FR',
-  ko: 'ko-KR',
-  es: 'es-ES',
-  it: 'it-IT',
+  pt: 'pt-PT',
+  ar: 'ar-AE',
   hi: 'hi-IN',
-  jp: 'ja-JP',
-  br: 'pt-BR',
+  ja: 'ja-JP',
 };
 
 export function getLocale() {
@@ -241,7 +242,7 @@ export function getLocale() {
 }
 let navigationConfig;
 export async function fetchNavigationConfig() {
-  const placeholders = await fetchPlaceholders();
+  const placeholders = await fetchPlaceholders(DOCROOT);
   const { aemGqEndpoint } = placeholders;
   const locale = getLocale();
   const DATA_URL = `${aemGqEndpoint}/realmadridmastersite/structurePage%3Balang=${locale}`;
@@ -265,9 +266,9 @@ export function getVipAreaIndexPath(url) {
 
 export async function fetchLanguagePlaceholders() {
   const currentLanguage = getLanguage();
-  let prefix = `/${currentLanguage}`;
+  let prefix = `${DOCROOT}/${currentLanguage}`;
   if (language === 'es') {
-    prefix = 'default';
+    prefix = DOCROOT;
   }
   const languagePlaceholders = await fetchPlaceholders(prefix);
   return languagePlaceholders;

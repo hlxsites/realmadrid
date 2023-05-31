@@ -6,27 +6,34 @@ sitemaps:
     lastmod: YYYY-MM-DD
     languages:
       es:
-        source: /area-vip/query-index.json
-        destination: /sitemap.xml
+        source: /sites/area-vip/query-index.json
+        destination: /sites/sitemap.xml
         hreflang: es
       en:
-        source: /en/vip-area/query-index.json
-        destination: /sitemap.xml
+        source: /sites/en/vip-area/query-index.json
+        destination: /sites/sitemap.xml
         hreflang: en
       de:
-        source: /de/vip-zone/query-index.json
-        destination: /sitemap.xml
+        source: /sites/de/vip-zone/query-index.json
+        destination: /sites/sitemap.xml
         hreflang: de
       fr:
-        source: /fr/zone-vip/query-index.json
-        destination: /sitemap.xml
+        source: /sites/fr/zone-vip/query-index.json
+        destination: /sites/sitemap.xml
         hreflang: fr
+      pt:
+        source: /sites/pt/area-vip/query-index.json
+        destination: /sites/sitemap.xml
+        hreflang: pt
       ja:
-        source: /ja/vip-area/query-index.json
-        destination: /sitemap.xml
+        source: /sites/ja/vip-area/query-index.json
+        destination: /sites/sitemap.xml
         hreflang: ja
       ar:
-        source: /ar/vip-area/query-index.json
-        destination: /sitemap.xml
+        source: /sites/ar/vip-area/query-index.json
+        destination: /sites/sitemap.xml
         hreflang: ar
-
+      hi:
+        source: /sites/hi/vip-area/query-index.json
+        destination: /sites/sitemap.xml
+        hreflang: hi

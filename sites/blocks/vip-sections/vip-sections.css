@@ -94,7 +94,7 @@ main .vip-sections-container {
 }
 
 .vip-sections a[download="download"]::before {
-  background-image: url('/icons/download.svg');
+  background-image: url('../../icons/download.svg');
   color: var(--icon-secondary-color);
   width: 20px;
   background-repeat: no-repeat;

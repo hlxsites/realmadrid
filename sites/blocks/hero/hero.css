@@ -84,7 +84,7 @@ main .hero-content a[download="download"] {
 }
 
 main .hero-content a[download="download"]::before {
-  background-image: url('/icons/download.svg');
+  background-image: url('../../icons/download.svg');
   width: 20px;
   background-repeat: no-repeat;
   height: 20px;

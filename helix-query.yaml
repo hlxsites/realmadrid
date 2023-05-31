@@ -1,18 +1,11 @@
 indices:
   area-vip-es:
     include:
-      - /area-vip
-      - /area-vip/**
+      - /sites/area-vip
+      - /sites/area-vip/**
     exclude:
-      - /en/**
-      - /de/**
-      - /fr/**
-      - /pt/**
-      - /ja/**
-      - /hi/**
-      - /ar/**
-      - /area-vip/fragments/**
-    target: /area-vip/query-index.json
+      - /sites/area-vip/fragments/**
+    target: /sites/area-vip/query-index.json
     properties:
       lastModified:
         select: none
@@ -31,11 +24,11 @@ indices:
         value: attribute(el, "content")
   area-vip-en:
     include:
-      - /en/vip-area
-      - /en/vip-area/**
+      - /sites/en/vip-area
+      - /sites/en/vip-area/**
     exclude:
-      - /en/vip-area/fragments/**
-    target: /en/vip-area/query-index.json
+      - /sites/en/vip-area/fragments/**
+    target: /sites/en/vip-area/query-index.json
     properties:
       lastModified:
         select: none
@@ -57,11 +50,11 @@ indices:
         value: attribute(el, "content")
   area-vip-de:
     include:
-      - /de/vip-zone
-      - /de/vip-zone/**
+      - /sites/de/vip-zone
+      - /sites/de/vip-zone/**
     exclude:
-      - /de/vip-zone/fragments/**
-    target: /de/vip-zone/query-index.json
+      - /sites/de/vip-zone/fragments/**
+    target: /sites/de/vip-zone/query-index.json
     properties:
       lastModified:
         select: none
@@ -83,11 +76,11 @@ indices:
         value: attribute(el, "content")
   area-vip-fr:
     include:
-      - /fr/zone-vip
-      - /fr/zone-vip/**
+      - /sites/fr/zone-vip
+      - /sites/fr/zone-vip/**
     exclude:
-      - /fr/zone-vip/fragments/**
-    target: /fr/zone-vip/query-index.json
+      - /sites/fr/zone-vip/fragments/**
+    target: /sites/fr/zone-vip/query-index.json
     properties:
       lastModified:
         select: none
@@ -109,11 +102,11 @@ indices:
         value: attribute(el, "content")
   area-vip-pt:
     include:
-      - /pt/area-vip
-      - /pt/area-vip/**
+      - /sites/pt/area-vip
+      - /sites/pt/area-vip/**
     exclude:
-      - /pt/area-vip/fragments/**
-    target: /pt/area-vip/query-index.json
+      - /sites/pt/area-vip/fragments/**
+    target: /sites/pt/area-vip/query-index.json
     properties:
       lastModified:
         select: none
@@ -135,11 +128,11 @@ indices:
         value: attribute(el, "content")
   area-vip-ja:
     include:
-      - /ja/vip-area
-      - /ja/vip-area/**
+      - /sites/ja/vip-area
+      - /sites/ja/vip-area/**
     exclude:
-      - /ja/vip-area/fragments/**
-    target: /ja/vip-area/query-index.json
+      - /sites/ja/vip-area/fragments/**
+    target: /sites/ja/vip-area/query-index.json
     properties:
       lastModified:
         select: none
@@ -161,11 +154,11 @@ indices:
         value: attribute(el, "content")
   area-vip-hi:
     include:
-      - /hi/vip-area
-      - /hi/vip-area/**
+      - /sites/hi/vip-area
+      - /sites/hi/vip-area/**
     exclude:
-      - /hi/vip-area/fragments/**
-    target: /hi/vip-area/query-index.json
+      - /sites/hi/vip-area/fragments/**
+    target: /sites/hi/vip-area/query-index.json
     properties:
       lastModified:
         select: none
@@ -187,11 +180,11 @@ indices:
         value: attribute(el, "content")
   area-vip-ar:
     include:
-      - /ar/vip-area
-      - /ar/vip-area/**
+      - /sites/ar/vip-area
+      - /sites/ar/vip-area/**
     exclude:
-      - /ar/vip-area/fragments/**
-    target: /ar/vip-area/query-index.json
+      - /sites/ar/vip-area/fragments/**
+    target: /sites/ar/vip-area/query-index.json
     properties:
       lastModified:
         select: none

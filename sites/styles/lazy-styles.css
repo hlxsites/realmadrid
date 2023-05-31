@@ -1,11 +1,11 @@
 /* below the fold CSS goes here */
 @import url('https://fonts.googleapis.com/css?family=Oswald:300,400,500,700|Open+Sans:300,400,600&display=swap');
-             
+
 /* icon font */
 @font-face{
   font-family:Real-Madrid-New-Icons;
   font-display:auto;
-  src: url("/fonts/Real-Madrid-Icons-new.woff") format("woff");
+  src: url("../fonts/Real-Madrid-Icons-new.woff") format("woff");
   font-weight:normal;
   font-style:normal;
 }
@@ -14,7 +14,7 @@
 @font-face{
   font-family:Real-Madrid-Icons;
   font-display:auto;
-  src: url("/fonts/Real-Madrid-Icons.woff2") format("woff");
+  src: url("../fonts/Real-Madrid-Icons.woff2") format("woff");
   font-weight:normal;
   font-style:normal;
 }
@@ -23,7 +23,7 @@
 @font-face{
   font-family:RMNeue;
   font-display:swap;
-  src: url("/fonts/RMNeue-Regular.woff2") format("woff");
+  src: url("../fonts/RMNeue-Regular.woff2") format("woff");
   font-weight:normal;
   font-style:normal;
 }
@@ -31,7 +31,7 @@
 @font-face{
   font-family:RMNeue;
   font-display:swap;
-  src: url("/fonts/RMNeue-SemiBold.woff2") format("woff");
+  src: url("../fonts/RMNeue-SemiBold.woff2") format("woff");
   font-weight:600;
   font-style:normal;
 }
@@ -39,7 +39,7 @@
 @font-face{
   font-family:RMNeue;
   font-display:swap;
-  src: url("/fonts/RMNeue-Bold.woff2") format("woff");
+  src: url("../fonts/RMNeue-Bold.woff2") format("woff");
   font-weight:bold;
   font-style:normal;
 }
