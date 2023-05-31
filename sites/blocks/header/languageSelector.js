@@ -1,35 +1,6 @@
-import { getLocale } from '../../scripts/scripts.js';
-
-const TOUR_SECTION = 'tour-bernabeu';
-const VIP_SECTION = 'area-vip';
-
-const SITES_PREFIX = '/sites';
-
-const defaultVipHome = {
-  en: '/en/vip-area',
-  es: '/area-vip',
-  fr: '/fr/zone-vip',
-  de: '/de/vip-zone',
-  pt: '/pt/area-vip',
-  ja: '/ja/vip-area',
-  ar: '/ar/vip-area',
-  hi: '/hi/vip-area',
-};
-
-const VIP_SECTION_NAMES = Object.values(defaultVipHome);
-
-const defaultTourHome = {
-  en: `/en/${TOUR_SECTION}`,
-  es: `/${TOUR_SECTION}`,
-  fr: `/fr/${TOUR_SECTION}`,
-  de: `/de/${TOUR_SECTION}`,
-  pt: `/pt${TOUR_SECTION}`,
-  ja: `/ja${TOUR_SECTION}`,
-  ar: `/ar${TOUR_SECTION}`,
-  hi: `/hi${TOUR_SECTION}`,
-};
-
-const TOUR_SECTION_NAMES = Object.values(defaultTourHome);
+import {
+  getLocale, getVIPAreaLangRoot, getTourLangRoot, getCurrentSection,
+} from '../../scripts/scripts.js';
 
 async function fetchSiteMap() {
   try {
@@ -61,15 +32,8 @@ async function getLocalizedUrls() {
 
 async function createLanguageDropdown(languages, languageButtonContent, currentLanguage) {
   const urls = await getLocalizedUrls();
-  let sectionName;
-  const currentUrl = window.location.pathname;
-  if (VIP_SECTION_NAMES.find((x) => currentUrl.indexOf(x) > -1)) {
-    sectionName = VIP_SECTION;
-  } else if (TOUR_SECTION_NAMES.find((x) => currentUrl.indexOf(x) > -1)) {
-    sectionName = TOUR_SECTION;
-  } else {
-    sectionName = VIP_SECTION; // todo: choose proper default
-  }
+  const sectionName = getCurrentSection();
+
   const languageDropdown = document.createElement('ul');
   languageDropdown.classList.add('language-selector-dropdown');
 
@@ -91,14 +55,14 @@ async function createLanguageDropdown(languages, languageButtonContent, currentL
     }
     const langName = languages[i].code.split('-')[0].toLowerCase();
     let defaultUrl = '#';
-    if (sectionName === TOUR_SECTION) {
-      defaultUrl = defaultTourHome[langName];
-    } else if (sectionName === VIP_SECTION) {
-      defaultUrl = defaultVipHome[langName];
+    if (sectionName === 'tour') {
+      defaultUrl = getTourLangRoot(langName);
+    } else if (sectionName === 'vip') {
+      defaultUrl = getVIPAreaLangRoot(langName);
     }
     const langUrl = urls[langName]
       ? urls[langName]
-      : `${SITES_PREFIX}${defaultUrl}`;
+      : `${defaultUrl}`;
     languageItem.innerHTML = `
       <a href="${langUrl}">${languages[i].label}</a>
       <svg focusable="false" width="22" height="22" aria-hidden="true">

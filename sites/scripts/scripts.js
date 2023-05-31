@@ -74,7 +74,7 @@ function buildContentHeaderBlock(main) {
   main.prepend(headerSection);
 }
 
-const DOCROOT = '/sites';
+export const DOCROOT = '/sites';
 
 const VIP_AREA_LANGUAGE_HOME_PATH = {
   es: `${DOCROOT}/area-vip`,
@@ -86,6 +86,23 @@ const VIP_AREA_LANGUAGE_HOME_PATH = {
   ar: `${DOCROOT}/ar/vip-area`,
   hi: `${DOCROOT}/hi/vip-area`,
 };
+
+const TOUR_SECTION = 'tour-bernabeu';
+
+const TOUR_LANGUAGE_HOME_PATH = {
+  es: `${DOCROOT}/${TOUR_SECTION}`,
+  en: `${DOCROOT}/en/${TOUR_SECTION}`,
+  fr: `${DOCROOT}/fr/${TOUR_SECTION}`,
+  de: `${DOCROOT}/de/${TOUR_SECTION}`,
+  pt: `${DOCROOT}/pt/${TOUR_SECTION}`,
+  ja: `${DOCROOT}/ja/${TOUR_SECTION}`,
+  ar: `${DOCROOT}/ar/${TOUR_SECTION}`,
+  hi: `${DOCROOT}/hi/${TOUR_SECTION}`,
+};
+
+const VIP_SECTION_PATHS = Object.values(VIP_AREA_LANGUAGE_HOME_PATH);
+
+const TOUR_SECTION_PATHS = Object.values(TOUR_LANGUAGE_HOME_PATH);
 
 let language;
 
@@ -105,9 +122,24 @@ export function getLanguage() {
   return language;
 }
 
-export function getVIPAreaLangRoot() {
-  language = getLanguage();
-  return VIP_AREA_LANGUAGE_HOME_PATH[language];
+export function getVIPAreaLangRoot(lang) {
+  const requestedLang = typeof lang === 'string' ? lang : getLanguage();
+  return VIP_AREA_LANGUAGE_HOME_PATH[requestedLang];
+}
+
+export function getTourLangRoot(lang) {
+  const requestedLang = typeof lang === 'string' ? lang : getLanguage();
+  return TOUR_LANGUAGE_HOME_PATH[requestedLang];
+}
+
+export function getCurrentSection() {
+  const currentUrl = window.location.pathname;
+  if (VIP_SECTION_PATHS.find((x) => currentUrl.indexOf(x) > -1)) {
+    return 'vip';
+  } if (TOUR_SECTION_PATHS.find((x) => currentUrl.indexOf(x) > -1)) {
+    return 'tour';
+  }
+  return 'vip'; // todo: choose proper default
 }
 
 function buildFAQPage(main) {
