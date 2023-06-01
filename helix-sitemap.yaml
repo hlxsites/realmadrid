@@ -37,3 +37,39 @@ sitemaps:
         source: /sites/hi/vip-area/query-index.json
         destination: /sites/sitemap.xml
         hreflang: hi
+  tour-bernabeu:
+    origin: https://main--realmadrid--hlxsites.hlx.live
+    lastmod: YYYY-MM-DD
+    languages:
+      es:
+        source: /sites/tour-bernabeu/query-index.json
+        destination: /sites/sitemap.xml
+        hreflang: es
+      en:
+        source: /sites/en/tour-bernabeu/query-index.json
+        destination: /sites/sitemap.xml
+        hreflang: en
+      de:
+        source: /sites/de/tour-bernabeu/query-index.json
+        destination: /sites/sitemap.xml
+        hreflang: de
+      fr:
+        source: /sites/fr/tour-bernabeu/query-index.json
+        destination: /sites/sitemap.xml
+        hreflang: fr
+      pt:
+        source: /sites/pt/tour-bernabeu/query-index.json
+        destination: /sites/sitemap.xml
+        hreflang: pt
+      ja:
+        source: /sites/ja/tour-bernabeu/query-index.json
+        destination: /sites/sitemap.xml
+        hreflang: ja
+      ar:
+        source: /sites/ar/tour-bernabeu/query-index.json
+        destination: /sites/sitemap.xml
+        hreflang: ar
+      hi:
+        source: /sites/hi/tour-bernabeu/query-index.json
+        destination: /sites/sitemap.xml
+        hreflang: hi
