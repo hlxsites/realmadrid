@@ -1,10 +1,10 @@
 import {
-  getLocale, getVIPAreaLangRoot, getTourLangRoot, getCurrentSection,
+  getLocale, getVIPAreaLangRoot, getTourLangRoot, getCurrentSection, DOCROOT,
 } from '../../scripts/scripts.js';
 
 async function fetchSiteMap() {
   try {
-    const response = await fetch('/sitemap.xml');
+    const response = await fetch(`${DOCROOT}/sitemap.xml`);
     const siteMapText = await response.text();
     const parser = new DOMParser();
     const siteMap = parser.parseFromString(siteMapText, 'text/xml');
