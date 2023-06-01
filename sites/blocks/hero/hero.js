@@ -12,10 +12,13 @@ function createVideo(block) {
     video.setAttribute('autoplay', '');
     video.innerHTML = `<source src="${a.href}" type="video/mp4" />`;
     if (screens[i]) {
-      video.setAttribute('data-screen', screens[i]);
+      video.setAttribute(`data-screen-${screens[i]}`, '');
     }
     return video;
   });
+  if (videos.length === 1) { // if there is only 1 video show it on mobile as well
+    videos[0].setAttribute('data-screen-mobile', '');
+  }
   const div = document.createElement('div');
   div.classList.add('video');
   div.append(...videos);

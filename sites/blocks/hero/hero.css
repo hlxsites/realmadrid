@@ -112,12 +112,12 @@ main .hero video {
   filter: brightness(0.75);
 }
 
-main .hero video[data-screen="mobile"] {
-  display: block;
+main .hero video[data-screen-desktop] {
+  display: none;
 }
 
-main .hero video[data-screen="desktop"] {
-  display: none;
+main .hero video[data-screen-mobile] {
+  display: block;
 }
 
 @media screen and (min-width:990px) {
@@ -171,11 +171,11 @@ main .hero video[data-screen="desktop"] {
    z-index : unset
   }
 
-  main .hero video[data-screen="mobile"] {
+  main .hero video[data-screen-mobile] {
     display: none;
   }
 
-  main .hero video[data-screen="desktop"] {
+  main .hero video[data-screen-desktop] {
     display: block;
   }
 }

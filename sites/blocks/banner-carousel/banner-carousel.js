@@ -103,10 +103,10 @@ function SliderTimer(fn, t) {
 }
 
 function initializeScroll(block, slidesNo) {
-  const prevBTN = document.getElementById('prev');
+  const prevBTN = block.querySelector('.control-container .prev');
   const slides = block.querySelector(':scope > div:first-child');
-  const nextBTN = document.getElementById('next');
-  const pagination = block.querySelector('.image-pagination');
+  const nextBTN = block.querySelector('.control-container .next');
+  const pagination = block.querySelector('.control-container .image-pagination');
   if (slidesNo > 1) {
     // automatic slide every 5secs
     const timer = new SliderTimer(() => {
@@ -158,11 +158,11 @@ export default function decorate(block) {
   });
   const indicatorsHTML = `
 <div class="control-container">
-    <div class="prev hide" id="prev">&#10094</div>
+    <div class="prev hide">&#10094</div>
     <div class="image-pagination">
       ${entries}
     </div>
-    <div class="next hide" id="next">&#10095</div>
+    <div class="next hide">&#10095</div>
   </div>`;
   block.innerHTML += indicatorsHTML;
   initializeScroll(block, cols.length);

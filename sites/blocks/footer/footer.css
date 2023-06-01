@@ -1,12 +1,14 @@
 /* stylelint-disable no-descending-specificity */
 
-.footer {
+footer {
+  position: relative;
+  background-color: var(--background-color);
   margin: 0;
-  padding: 0;
+  padding: 20px 0;
 }
 
 .footer-main-section {
-  margin: 20px 80px;
+  margin: 0 80px;
 }
 
 .footer-bottom-section {
@@ -284,7 +286,7 @@
 
 @media (max-width: 768px) {
   .footer-main-section {
-    margin: 20px;
+    margin: 0 20px;
   }
 
   .footer-main-navigation {
@@ -327,5 +329,11 @@
 
   .footer-other-sponsors li img {
     width: 60px;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .footer-other-sponsors {
+    width: 100%;
   }
 }
