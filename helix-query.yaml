@@ -209,7 +209,7 @@ indices:
       - /sites/tour-bernabeu
       - /sites/tour-bernabeu/**
     exclude:
-      - /sites/tour-bernabeu/es/fragments/**
+      - /sites/tour-bernabeu/fragments/**
     target: /sites/tour-bernabeu/query-index.json
     properties:
       lastModified:
