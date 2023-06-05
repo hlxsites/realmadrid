@@ -153,7 +153,7 @@ const renderMatch = (placeholders) => (match) => {
   const time = new Date(dateTime);
   const month = monthFormat.format(time);
   const content = `
-  <input type="checkbox" />
+  <input aria-label="add to calendar" type="checkbox" />
   <div class="calendar-info">
     <a href="#">${pricesAndSales}</a>
     <span>${addToCalendar}</span>

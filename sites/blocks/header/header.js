@@ -18,13 +18,13 @@ export default async function decorate(block) {
 
   const sponsorIcons = data.data.header.items[0].sponsors.map((sponsor) => (
     // eslint-disable-next-line no-underscore-dangle
-    `<img src='${sponsor.logo._publishUrl}' class="header-sponsor-icon"/>`
+    `<img src='${sponsor.logo._publishUrl}' class="header-sponsor-icon" alt="${sponsor.title}"/>`
   )).join('');
   const { sponsorsLink } = data.data.header.items[0];
 
   const logo = data.data.header.items[0].additionalLogos[0];
   // eslint-disable-next-line no-underscore-dangle
-  const logoImg = logo && logo.image ? `<img src='${logo.image._publishUrl}' style="width: 40px; height: 40px; margin-left: 16px"/>` : '';
+  const logoImg = logo && logo.image ? `<img src='${logo.image._publishUrl}' style="width: 40px; height: 40px; margin-left: 16px" alt="${logo.title}"/>` : '';
   const { login } = await fetchLanguagePlaceholders();
   block.appendChild(document.createRange().createContextualFragment(`
     <div style="flex: 1 0 auto; display: flex; flex-direction: row; justify-content: space-between; align-items: center">

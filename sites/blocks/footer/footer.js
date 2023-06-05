@@ -74,8 +74,8 @@ export default async function decorate(block) {
     const li = document.createElement('li');
     mainSponsors.append(li);
     li.appendChild(document.createRange().createContextualFragment(`
-      <a href="${item.url}" alt="${item.title}">
-        <img src="${item.logo._publishUrl}">
+      <a href="${item.url}">
+        <img src="${item.logo._publishUrl}" alt="${item.title}">
       </a>
     `));
   });
@@ -86,8 +86,8 @@ export default async function decorate(block) {
     const li = document.createElement('li');
     otherSponsors.append(li);
     li.appendChild(document.createRange().createContextualFragment(`
-      <a href="${item.url}" alt="${item.title}">
-        <img src="${item.logo._publishUrl}">
+      <a href="${item.url}">
+        <img src="${item.logo._publishUrl}" alt="${item.title}">
       </a>
     `));
   });
