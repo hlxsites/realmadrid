@@ -4,7 +4,7 @@
 /* icon font */
 @font-face{
   font-family:Real-Madrid-New-Icons;
-  font-display:auto;
+  font-display:swap;
   src: url("../fonts/Real-Madrid-Icons-new.woff") format("woff");
   font-weight:normal;
   font-style:normal;
@@ -13,7 +13,7 @@
 /* icon font */
 @font-face{
   font-family:Real-Madrid-Icons;
-  font-display:auto;
+  font-display:swap;
   src: url("../fonts/Real-Madrid-Icons.woff2") format("woff");
   font-weight:normal;
   font-style:normal;
