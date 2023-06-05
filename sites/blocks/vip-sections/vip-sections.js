@@ -38,6 +38,10 @@ function transformToSectionsUnorderedList(input, excludedSectionPath) {
     }
 
     const breakpoints = [
+      { media: '(max-width: 480px)', width: '480' },
+      { media: '(min-width: 480px) and (max-width: 600px)', width: '600' },
+      { media: '(min-width: 600px) and (max-width: 750px)', width: '750' },
+      { media: '(min-width: 750px) and (max-width: 990px)', width: '960' },
       { media: '(max-width: 990px)', width: '960' },
       { media: '(min-width: 990px) and (max-width: 1200px)', width: '480' },
       { media: '(min-width: 1200px)', width: '600' },
