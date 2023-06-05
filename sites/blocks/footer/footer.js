@@ -52,11 +52,11 @@ export default async function decorate(block) {
 
   const mobileApps = document.createElement('ul');
   mobileApps.classList.add('footer-mobile-apps');
-  mainSection.append(mobileApps);
-  mobileApps.appendChild(document.createRange().createContextualFragment(`
+  mainSection.append(document.createRange().createContextualFragment(`
     <h3>${footerConfig.mobileAPPLinks.title}</h3>
     <h4>${footerConfig.mobileAPPLinks.subtitle}</h4>
   `));
+  mainSection.append(mobileApps);
   footerConfig.mobileAPPLinks.appLinks.forEach((item) => {
     const li = document.createElement('li');
     mobileApps.append(li);

@@ -117,8 +117,8 @@ footer {
 .footer-mobile-apps {
   text-align: center;
   vertical-align: center;
-  padding: 20px 0;
-  border-top: 1px solid #E6E9ED;
+  margin: 0;
+  padding: 0;
 }
 
 .footer-mobile-apps li {
@@ -126,7 +126,8 @@ footer {
   display: inline-block;
 }
 
-.footer-mobile-apps h3, .footer-mobile-apps h4 {
+.footer-main-section > h3, .footer-main-section > h4 {
+  text-align: center;
   font-family: RMNeue, Helvetica, Arial, sans-serif;
   font-weight: normal;
   font-size: 14px;
@@ -134,11 +135,13 @@ footer {
   margin: 0;
 }
 
-.footer-mobile-apps h3 {
+.footer-main-section > h3 {
   color: #8C95A6;
+  border-top: 1px solid #E6E9ED;
+  padding: 20px 0 0;
 }
 
-.footer-mobile-apps h4 {
+.footer-main-section > h4 {
   color: #0E2145;
 }
 
