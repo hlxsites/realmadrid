@@ -22,30 +22,13 @@ function togglePopup(modal, bShow) {
   }
 }
 
-function loadIframe(entries, observer) {
-  entries.forEach((e) => {
-    if (e.isIntersecting) {
-      const li = e.target;
-      const iframeLink = li.querySelector('p > a[href$="iframe=true"]');
-      if (iframeLink) {
-        const { parentElement } = iframeLink;
-        const link = iframeLink.href;
-        if (link) {
-          parentElement.innerHTML = `<iframe src="${link}" allow="fullscreen" frameborder="0"/>`;
-        }
-      }
-      observer.unobserve(li);
-    }
-  });
-}
-
-function enableIframeLoad(li) {
-  const options = {
-    rootMargin: '0px',
-    threshold: 0.5,
-  };
-  const observer = new IntersectionObserver(loadIframe, options);
-  observer.observe(li);
+function renderIFrame(li) {
+  const iframeLink = li.querySelector('p > a[href$="iframe=true"]');
+  const { parentElement } = iframeLink;
+  const link = iframeLink.href;
+  if (link) {
+    parentElement.innerHTML = `<iframe src="${link}" allow="fullscreen" frameborder="0"/>`;
+  }
 }
 
 function attachEventHandlers(li) {
@@ -63,6 +46,10 @@ function attachEventHandlers(li) {
   });
 
   li.addEventListener('click', () => {
+    const iframeLink = li.querySelector('p > a[href$="iframe=true"]');
+    if (iframeLink) {
+      renderIFrame(li);
+    }
     togglePopup(modal, true);
     modal.focus();
   });
@@ -110,9 +97,6 @@ async function makePopupCards(block) {
     const icon = li.querySelector('.cards-card-body:first-child span');
     const heading = li.querySelector('.cards-card-body:last-child h3');
     const iframeLink = li.querySelector('p > a[href$="iframe=true"]');
-    if (iframeLink) {
-      enableIframeLoad(li);
-    }
     li.append(createModal(icon, heading, content, iframeLink != null));
     content.forEach((c) => c.remove());
     attachEventHandlers(li);
