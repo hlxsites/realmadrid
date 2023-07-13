@@ -16,12 +16,25 @@ function createVideo(block) {
     }
     return video;
   });
-  if (videos.length === 1) { // if there is only 1 video show it on mobile as well
-    videos[0].setAttribute('data-screen-mobile', '');
-  }
+
   const div = document.createElement('div');
   div.classList.add('video');
-  div.append(...videos);
+
+  if (videos.length === 1) {
+    // if there is only 1 video show it on mobile as well
+    videos[0].setAttribute('data-screen-mobile', '');
+  } else {
+    // if there are 2 videos, create a mediaquery
+    const mq = window.matchMedia('(min-width:990px)');
+    // add an event listener to the media query
+    mq.addEventListener('change', (e) => {
+      // either add mobile or desktop video element
+      div.append(e.target.matches ? videos[0] : videos[1]);
+    });
+    // trigger it to set the right video on load
+    mq.dispatchEvent(new Event('change'));
+  }
+
   return div;
 }
 
