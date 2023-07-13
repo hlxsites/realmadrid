@@ -3,6 +3,7 @@ import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
 function createVideo(block) {
   const anchors = [...block.querySelectorAll('a[href$=".mp4"]')];
   const screens = ['desktop', 'mobile'];
+  const src = {};
   const videos = anchors.map((a, i) => {
     const video = document.createElement('video');
     video.setAttribute('loop', '');
@@ -10,9 +11,9 @@ function createVideo(block) {
     video.muted = true;
     video.setAttribute('playsInline', '');
     video.setAttribute('autoplay', '');
-    video.innerHTML = `<source src="${a.href}" type="video/mp4" />`;
     if (screens[i]) {
       video.setAttribute(`data-screen-${screens[i]}`, '');
+      src[screens[i]] = `<source src="${a.href}" type="video/mp4" />`;
     }
     return video;
   });
@@ -29,12 +30,13 @@ function createVideo(block) {
     // add an event listener to the media query
     mq.addEventListener('change', (e) => {
       // either add mobile or desktop video element
-      div.append(e.target.matches ? videos[0] : videos[1]);
+      // eslint-disable-next-line no-unused-expressions
+      e.target.matches ? videos[0].innerHTML = src.desktop : videos[1].innerHTML = src.mobile;
     });
     // trigger it to set the right video on load
     mq.dispatchEvent(new Event('change'));
   }
-
+  div.append(...videos);
   return div;
 }
 
