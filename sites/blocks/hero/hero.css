@@ -20,8 +20,68 @@ main .hero {
   margin-top:-64px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content:flex-end;
   color: var(--background-color);
+}
+
+main .hero .navigation {
+  z-index: 3;
+  margin-top:80px;
+  flex-grow: 2;
+}
+
+main .hero .navigation .parent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 2rem;
+  margin:  0;
+  font-size: 0.8125rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--background-color);
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.13px;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  background-color: rgba(0 0 0 / 40%);
+  border-radius: 1rem;
+}
+
+main .hero .navigation .parent span.icon {
+  padding-inline-start: 0.5rem;
+  height: 18px;
+  transform: rotate(180deg);
+}
+
+main .hero .children {
+  display:flex;
+}
+
+main .hero .navigation .child {
+  display:inline-flex;
+  min-width: max-content;
+  align-items: center;
+  justify-content: flex-start;
+  height: 2rem;
+  margin: 1rem 0.5rem;
+  font-size: 0.8125rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--background-color);
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.13px;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  background-color: rgba(100 100 100 / 40%);
+  border-radius: 1rem;
+}
+
+main .hero .navigation .child span.icon {
+  padding-inline-start: 0.5rem;
+  height: 18px;
 }
 
 main .hero-content {

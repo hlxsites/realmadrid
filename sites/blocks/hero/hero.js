@@ -1,4 +1,56 @@
-import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
+import { decorateIcons, createOptimizedPicture } from '../../scripts/lib-franklin.js';
+import { getVIPAreaLangRoot } from '../../scripts/scripts.js';
+
+async function getVIPQueryindex(vipRoot) {
+  const resp = await fetch(`${vipRoot}/query-index.json`);
+  return resp.ok ? (await resp.json()).data : null;
+}
+
+async function addNavigation(block) {
+  // get language dependent root
+  const vipRoot = getVIPAreaLangRoot();
+  const currentPath = document.location.pathname;
+  // no navigation for VIP root page
+  // if (currentPath === vipRoot) return;
+
+  // get query index for this language
+  const index = await getVIPQueryindex(vipRoot);
+  if (index === null) return;
+
+  // nav container div
+  const nav = document.createElement('div');
+  nav.classList.add('navigation');
+
+  // get parent path
+  const parentPath = currentPath.substring(0, currentPath.lastIndexOf('/'));
+  // get index entry for parent
+  const parentIndex = index.find((parentEntry) => parentEntry.path === parentPath);
+  if (parentIndex) {
+    nav.append(document.createRange().createContextualFragment(`
+    <a href='${parentPath}'class='parent'><span class='icon icon-arrow-right'></span>${parentIndex.title}</a>
+    `));
+  }
+
+  // add direct children
+  const childrenDepth = currentPath.split('/').length + 1;
+  const childrenDiv = document.createElement('div');
+  childrenDiv.classList.add('children');
+  index.forEach((entry) => {
+    if (entry.path.startsWith(currentPath) && entry.path.split('/').length === childrenDepth
+    && entry.category !== 'vip-area-detail') {
+      childrenDiv.append(document.createRange().createContextualFragment(`
+      <a href='${entry.path}'class='child'></span>${entry.title}</a>
+      `));
+    }
+  });
+  if (childrenDiv.hasChildNodes()) {
+    nav.append(childrenDiv);
+  }
+
+  decorateIcons(nav);
+  // append navigation block
+  block.prepend(nav);
+}
 
 function createVideo(block) {
   const anchors = [...block.querySelectorAll('a[href$=".mp4"]')];
@@ -54,5 +106,9 @@ export default async function decorate(block) {
     heroContent.classList.add('hero-content');
     block.append(heroContent);
   }
+
+  // add navigation to hero block
+  addNavigation(block);
+
   return block;
 }
