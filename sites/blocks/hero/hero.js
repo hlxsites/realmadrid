@@ -108,7 +108,7 @@ export default async function decorate(block) {
   }
 
   // add navigation to hero block
-  addNavigation(block);
+  // addNavigation(block);
 
   return block;
 }
