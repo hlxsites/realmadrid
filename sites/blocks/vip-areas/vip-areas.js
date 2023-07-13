@@ -1,14 +1,14 @@
-import { createOptimizedPicture } from '../../scripts/lib-franklin.js';
+import { createOptimizedPicture, readBlockConfig } from '../../scripts/lib-franklin.js';
 import { getVipAreaIndexPath } from '../../scripts/scripts.js';
 
 const AREAS_VIP_DETAIL = 'vip-area-detail';
 
-async function fetchVIPAreas() {
+async function fetchVIPAreas(category) {
   try {
     const vipAreaIndexPath = getVipAreaIndexPath(new URL(window.location));
     const resp = await fetch(vipAreaIndexPath);
     const json = await resp.json();
-    return json.data.filter((area) => area.category === AREAS_VIP_DETAIL);
+    return json.data.filter((area) => area.category === (category || AREAS_VIP_DETAIL));
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log(`unable to fetch vip areas ${e}`);
@@ -45,7 +45,8 @@ function areaElement(area) {
  * @param {Element} block The VIP areas element
  */
 export default async function decorate(block) {
-  const vipareas = await fetchVIPAreas();
+  const { category } = readBlockConfig(block);
+  const vipareas = await fetchVIPAreas(category);
   const ul = document.createElement('ul');
 
   vipareas.map(areaElement)
