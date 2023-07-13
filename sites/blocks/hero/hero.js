@@ -110,5 +110,6 @@ export default async function decorate(block) {
   // add navigation to hero block
   await addNavigation(block);
 
+  
   return block;
 }
