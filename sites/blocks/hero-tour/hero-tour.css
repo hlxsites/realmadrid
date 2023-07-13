@@ -509,7 +509,7 @@ body.tour .section.hero-tour-container .hero-tour.block {
 .hero-tour.block .ticket-card-list.hero .ticket-detail ul {
   margin: 0;
   margin-bottom: 1.125rem;
-  margin-inline-end: 1.125rem;
+  margin-inline-start: 1.125rem;
   padding: 0;
   list-style-type: none;
   font-size: 1rem;
@@ -660,8 +660,8 @@ body.tour .section.hero-tour-container .hero-tour.block {
     line-height: 1.77;
     margin-top: 0;
     margin-bottom: 0.875rem;
-    margin-inline-start: 0;
-    margin-inline-end:1.125rem
+    margin-inline-end: 0;
+    margin-inline-start:1.125rem
   }
 }
 

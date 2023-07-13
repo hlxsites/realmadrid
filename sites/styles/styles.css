@@ -522,7 +522,7 @@ body.tour.tour-detail main .main-content .placeholder blockquote::after {
 
   body.tour.tour-detail main .main-content .default-content-wrapper p,
   body.tour.tour-detail main .main-content .default-content-wrapper h3 {
-    padding-left: 290px;
+    padding-inline-start: 290px;
   }
 
   body.tour.tour-detail main .main-content .default-content-wrapper p,
@@ -532,8 +532,8 @@ body.tour.tour-detail main .main-content .placeholder blockquote::after {
 
   body.tour.tour-detail main .main-content .default-content-wrapper blockquote,
   body.tour.tour-detail main .main-content .placeholder blockquote {
-    padding-left: 431px;
-    padding-right: 135px;
+    padding-inline-start: 431px;
+    padding-inline-end: 135px;
   }
 
   body.tour.tour-detail main .main-content .default-content-wrapper blockquote p,
@@ -542,7 +542,7 @@ body.tour.tour-detail main .main-content .placeholder blockquote::after {
   }
 
   body.tour.tour-detail main .main-content .default-content-wrapper ul {
-    padding-left: 314px;
+    padding-inline-start: 314px;
   }
 }
 

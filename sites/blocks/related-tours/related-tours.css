@@ -240,7 +240,7 @@ main .section.related-tours-container .related-tours-wrapper {
 /* tour includes list */
 .related-tours.block .ticket-card-list.related .ticket-detail .content > ul {
   margin: 0 0 1.125rem;
-  margin-inline-end: 1.125rem;
+  margin-inline-start: 1.125rem;
   padding: 0;
   list-style-type: none;
   font-size: 1rem;
@@ -380,7 +380,7 @@ main .section.related-tours-container .related-tours-wrapper {
     font-size: 0.8125rem;
     line-height: 1.77;
     margin: 0 0 0.875rem;
-    margin-inline-end: 0.625rem;
+    margin-inline-start: 0.625rem;
   }
 
   /* more info link */
